@@ -23,6 +23,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
     {
         BackgroundWorker BGW = new BackgroundWorker();
         bool BkWBool = false;
+        bool _LockMode = false; //學年度學期鎖定模式
 
         List<JHMeritRecord> MeritList = new List<JHMeritRecord>();
         List<JHDemeritRecord> DemeirtList = new List<JHDemeritRecord>();
@@ -54,6 +55,19 @@ namespace JHSchool.Behavior.MeritAndDemerit
             _Semester = Semester;
 
             _UserPermission = UserPermission;
+        }
+
+        //多載建構子 by Cloud
+        public DisciplineUnifytForm(string StudentID, int SchoolYear, int Semester, FeatureAce UserPermission,bool LockMode)
+        {
+            InitializeComponent();
+
+            _StudentID = StudentID;
+            _SchoolYear = SchoolYear;
+            _Semester = Semester;
+
+            _UserPermission = UserPermission;
+            _LockMode = LockMode;
         }
 
         private void DemeritUnifytForm_Load(object sender, EventArgs e)
@@ -449,7 +463,17 @@ namespace JHSchool.Behavior.MeritAndDemerit
         {
             List<JHStudentRecord> studs = new List<JHStudentRecord>();
             studs.Add(JHStudent.SelectByID(_StudentID));
-            MeritEditForm editForm = new MeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString());  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
+            MeritEditForm editForm;
+            //判斷是否為LockMode
+            if(_LockMode)
+            {
+                editForm = new MeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString(),true);  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
+            }
+            else
+            {
+                editForm = new MeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString());  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
+            }
+
             editForm.ShowDialog();
         }
 
@@ -519,7 +543,17 @@ namespace JHSchool.Behavior.MeritAndDemerit
         {
             List<JHStudentRecord> studs = new List<JHStudentRecord>();
             studs.Add(JHStudent.SelectByID(_StudentID));
-            DemeritEditForm editForm = new DemeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString());  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
+            DemeritEditForm editForm;
+            //判斷是否為LockMode
+            if(_LockMode)
+            {
+                editForm = new DemeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString(), true);  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
+            }
+            else
+            {
+                editForm = new DemeritEditForm(studs, _SchoolYear.ToString(), _Semester.ToString());  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
+            }
+            
             editForm.ShowDialog();
         }
 

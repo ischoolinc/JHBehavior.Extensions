@@ -12,6 +12,7 @@ using Framework.Security;
 using Framework;
 using JHSchool.Behavior.BusinessLogic;
 using FCode = Framework.Security.FeatureCodeAttribute;
+using JHSchool.Behavior.MeritAndDemerit.StudentExtendControls;
 
 namespace JHSchool.Behavior.MeritAndDemerit
 {
@@ -223,6 +224,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
                 foreach (AutoSummaryRecord each in AutoSummaryList)
                 {
+                    if (each.DemeritA + each.DemeritB + each.DemeritC + each.MeritA + each.MeritB + each.MeritC == 0) continue;
                     ListViewItem itms = new ListViewItem(each.SchoolYear.ToString());
                     itms.SubItems.Add(each.Semester.ToString());
 
@@ -276,6 +278,18 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 {
                     BGW.RunWorkerAsync();
                 }
+            }
+        }
+
+        //新增
+        private void buttonX1_Click_1(object sender, EventArgs e)
+        {
+            SelectSchoolYearSemester fm = new SelectSchoolYearSemester(this.PrimaryKey, UserPermission);
+            fm.ShowDialog();
+
+            if (!BGW.IsBusy)
+            {
+                BGW.RunWorkerAsync();
             }
         }
     }

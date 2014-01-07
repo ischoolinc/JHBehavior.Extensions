@@ -96,6 +96,52 @@ namespace JHSchool.Behavior.MeritAndDemerit
             #endregion
         }
 
+        //多載建構子
+        public MeritEditForm(List<JHStudentRecord> students, string SchoolYear, string Semester,bool LockMode)
+        {
+            #region 新增
+            this._students = students;
+
+            #region 建構子
+            InitializeComponent();
+
+            _errorProvider = new ErrorProvider();
+
+            //學年度
+            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 3);
+            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 2);
+            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 1);
+            int SchoolYearSelectIndex = cboSchoolYear.Items.Add(int.Parse(SchoolYear));
+            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) + 1);
+            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) + 2);
+            cboSchoolYear.SelectedIndex = SchoolYearSelectIndex;
+            //學期
+            cboSemester.Items.Add(1);
+            cboSemester.Items.Add(2);
+            cboSemester.SelectedIndex = Semester == "1" ? 0 : 1;
+            #endregion
+
+            //LockMode狀態鎖住學年度學期
+            if (LockMode)
+            {
+                cboSchoolYear.Enabled = false;
+                cboSemester.Enabled = false;
+            }
+
+            dateTimeInput1.Value = DateTime.Today;
+            dateTimeInput2.Value = DateTime.Today;
+            Text = "獎勵管理";
+            if (this._students.Count > 1)
+            {
+                Text = string.Format("獎勵管理 【 新增：{0} ... 等共 {1} 位 】", this._students[0].Name, this._students.Count.ToString()); ;
+            }
+            else if (this._students.Count == 1)
+            {
+                Text = string.Format("獎勵管理 【 新增：{0} 】", this._students[0].Name); ;
+            }
+            #endregion
+        }
+
         /// <summary>
         /// Constructor，修改時使用
         /// </summary>
