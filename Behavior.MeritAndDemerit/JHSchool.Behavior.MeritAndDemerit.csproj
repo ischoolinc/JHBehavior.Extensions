@@ -35,6 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=4.3.0.0, Culture=neutral, PublicKeyToken=9a40d5a4b59e5256, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\JHBehavior.Extensions_KH\Behavior.MeritAndDemerit.KH\Library\Aspose.Cells.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Aspose.Words, Version=4.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\JHBehavior.Extensions_KH\Behavior.MeritAndDemerit.KH\Library\Aspose.Words.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\FiscaRuntime\components\DevComponents.DotNetBar2.dll</HintPath>
@@ -63,12 +73,22 @@
       <HintPath>Library\FISCA.Presentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="FISCA.UDT, Version=1.0.2.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\JHBehavior.Extensions_KH\Behavior.MeritAndDemerit.KH\Library\FISCA.UDT.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Framework">
       <HintPath>Library\Framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="JHSchool">
       <HintPath>Library\JHSchool.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JHSchool.Affair, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\JHBehavior.Extensions_KH\Behavior.MeritAndDemerit.KH\Library\JHSchool.Affair.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="JHSchool.Behavior">
@@ -91,6 +111,11 @@
       <HintPath>Library\SmartSchool.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="SmartSchool.ErrorReporting, Version=1.0.2.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\JHBehavior.Extensions_KH\Behavior.MeritAndDemerit.KH\Library\SmartSchool.ErrorReporting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -109,6 +134,37 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\ChangeResonBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\ChangeResonBatch.designer.cs">
+      <DependentUpon>ChangeResonBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\ChangeTextForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\ChangeTextForm.designer.cs">
+      <DependentUpon>ChangeTextForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\DataGridViewExport.cs" />
+    <Compile Include="StuAdminExtendControls\MerDemEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\MerDemEditForm.designer.cs">
+      <DependentUpon>MerDemEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\ModifyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\ModifyForm.designer.cs">
+      <DependentUpon>ModifyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\SetValueSchoolYearSemester.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\SetValueSchoolYearSemester.designer.cs">
+      <DependentUpon>SetValueSchoolYearSemester.cs</DependentUpon>
     </Compile>
     <Compile Include="StudentExtendControls\DemeritItem.cs">
       <SubType>UserControl</SubType>
@@ -173,6 +229,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="StuAdminExtendControls\ChangeResonBatch.resx">
+      <DependentUpon>ChangeResonBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StuAdminExtendControls\ChangeTextForm.resx">
+      <DependentUpon>ChangeTextForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StuAdminExtendControls\MerDemEditForm.resx">
+      <DependentUpon>MerDemEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StuAdminExtendControls\ModifyForm.resx">
+      <DependentUpon>ModifyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StuAdminExtendControls\SetValueSchoolYearSemester.resx">
+      <DependentUpon>SetValueSchoolYearSemester.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StudentExtendControls\DemeritItem.resx">
       <DependentUpon>DemeritItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,8 +285,34 @@
   <ItemGroup>
     <None Include="Resources\laws_64.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Library\" />
+    <Content Include="Library\Aspose.Cells.dll" />
+    <Content Include="Library\Aspose.Cells.xml" />
+    <Content Include="Library\Aspose.Words.dll" />
+    <Content Include="Library\Aspose.Words.xml" />
+    <Content Include="Library\FISCA.dll" />
+    <Content Include="Library\FISCA.DSAClient.dll" />
+    <Content Include="Library\FISCA.DSAUtil.dll" />
+    <Content Include="Library\FISCA.LogAgent.dll" />
+    <Content Include="Library\FISCA.Permission.dll" />
+    <Content Include="Library\FISCA.Presentation.dll" />
+    <Content Include="Library\FISCA.UDT.dll" />
+    <Content Include="Library\FISCA.UDT.pdb" />
+    <Content Include="Library\FISCA.UDT.xml" />
+    <Content Include="Library\Framework.dll" />
+    <Content Include="Library\JHSchool.Affair.dll" />
+    <Content Include="Library\JHSchool.Affair.pdb" />
+    <Content Include="Library\JHSchool.Behavior.dll" />
+    <Content Include="Library\JHSchool.Data.dll" />
+    <Content Include="Library\JHSchool.dll" />
+    <Content Include="Library\K12.Data.dll" />
+    <Content Include="Library\K12.Presentation.dll" />
+    <Content Include="Library\SmartSchool.Common.dll" />
+    <Content Include="Library\SmartSchool.ErrorReporting.dll" />
+    <Content Include="Library\SmartSchool.ErrorReporting.pdb" />
+    <Content Include="Library\SmartSchool.ErrorReporting.xml" />
+    <None Include="Resources\star_write_64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
