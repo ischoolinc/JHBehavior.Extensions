@@ -36,8 +36,6 @@
             this.txt3 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txt2 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txt1 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.cboSemester = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.cboSchoolYear = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.lbl3 = new DevComponents.DotNetBar.LabelX();
@@ -48,8 +46,12 @@
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
             this.dateTimeInput1 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.dateTimeInput2 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.intSemester = new DevComponents.Editors.IntegerInput();
+            this.intSchoolYear = new DevComponents.Editors.IntegerInput();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intSemester)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).BeginInit();
             this.SuspendLayout();
             // 
             // cboReasonRef
@@ -160,31 +162,6 @@
             this.txt1.TabIndex = 46;
             this.txt1.Validated += new System.EventHandler(this.txt1_Validated);
             // 
-            // cboSemester
-            // 
-            this.cboSemester.DisplayMember = "Text";
-            this.cboSemester.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboSemester.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSemester.FormattingEnabled = true;
-            this.cboSemester.ItemHeight = 19;
-            this.cboSemester.Location = new System.Drawing.Point(226, 13);
-            this.cboSemester.Name = "cboSemester";
-            this.cboSemester.Size = new System.Drawing.Size(77, 25);
-            this.cboSemester.TabIndex = 45;
-            this.cboSemester.Validated += new System.EventHandler(this.cboSemester_Validated);
-            // 
-            // cboSchoolYear
-            // 
-            this.cboSchoolYear.DisplayMember = "Text";
-            this.cboSchoolYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboSchoolYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSchoolYear.FormattingEnabled = true;
-            this.cboSchoolYear.ItemHeight = 19;
-            this.cboSchoolYear.Location = new System.Drawing.Point(88, 13);
-            this.cboSchoolYear.Name = "cboSchoolYear";
-            this.cboSchoolYear.Size = new System.Drawing.Size(70, 25);
-            this.cboSchoolYear.TabIndex = 44;
-            // 
             // labelX7
             // 
             this.labelX7.AutoSize = true;
@@ -269,7 +246,7 @@
             // 
             this.labelX2.BackgroundStyle.Class = "";
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(184, 14);
+            this.labelX2.Location = new System.Drawing.Point(184, 15);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(34, 21);
             this.labelX2.TabIndex = 38;
@@ -426,12 +403,49 @@
             this.dateTimeInput2.Size = new System.Drawing.Size(215, 25);
             this.dateTimeInput2.TabIndex = 59;
             // 
+            // intSemester
+            // 
+            this.intSemester.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.intSemester.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.intSemester.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.intSemester.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.intSemester.Location = new System.Drawing.Point(226, 13);
+            this.intSemester.MaxValue = 2;
+            this.intSemester.MinValue = 1;
+            this.intSemester.Name = "intSemester";
+            this.intSemester.ShowUpDown = true;
+            this.intSemester.Size = new System.Drawing.Size(80, 25);
+            this.intSemester.TabIndex = 65;
+            this.intSemester.Value = 1;
+            // 
+            // intSchoolYear
+            // 
+            this.intSchoolYear.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.intSchoolYear.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.intSchoolYear.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.intSchoolYear.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.intSchoolYear.Location = new System.Drawing.Point(88, 13);
+            this.intSchoolYear.MaxValue = 999;
+            this.intSchoolYear.MinValue = 90;
+            this.intSchoolYear.Name = "intSchoolYear";
+            this.intSchoolYear.ShowUpDown = true;
+            this.intSchoolYear.Size = new System.Drawing.Size(80, 25);
+            this.intSchoolYear.TabIndex = 64;
+            this.intSchoolYear.Value = 90;
+            // 
             // DemeritEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 298);
-            this.ControlBox = false;
+            this.Controls.Add(this.intSemester);
+            this.Controls.Add(this.intSchoolYear);
             this.Controls.Add(this.dateTimeInput2);
             this.Controls.Add(this.dateTimeInput1);
             this.Controls.Add(this.labelX4);
@@ -443,8 +457,6 @@
             this.Controls.Add(this.txt3);
             this.Controls.Add(this.txt2);
             this.Controls.Add(this.txt1);
-            this.Controls.Add(this.cboSemester);
-            this.Controls.Add(this.cboSchoolYear);
             this.Controls.Add(this.labelX7);
             this.Controls.Add(this.labelX6);
             this.Controls.Add(this.lbl3);
@@ -452,12 +464,15 @@
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.labelX2);
             this.Controls.Add(this.labelX1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DemeritEditForm";
             this.Text = "DemeritEditor";
             this.Load += new System.EventHandler(this.DemeritEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intSemester)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -473,8 +488,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txt3;
         private DevComponents.DotNetBar.Controls.TextBoxX txt2;
         private DevComponents.DotNetBar.Controls.TextBoxX txt1;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx cboSemester;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx cboSchoolYear;
         private DevComponents.DotNetBar.LabelX labelX7;
         private DevComponents.DotNetBar.LabelX labelX6;
         private DevComponents.DotNetBar.LabelX lbl3;
@@ -485,5 +498,7 @@
         private DevComponents.DotNetBar.LabelX labelX4;
         private DevComponents.Editors.DateTimeAdv.DateTimeInput dateTimeInput1;
         private DevComponents.Editors.DateTimeAdv.DateTimeInput dateTimeInput2;
+        private DevComponents.Editors.IntegerInput intSemester;
+        private DevComponents.Editors.IntegerInput intSchoolYear;
     }
 }

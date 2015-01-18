@@ -68,17 +68,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
             _errorProvider = new ErrorProvider();
 
             //學年度
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 3);
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 2);
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 1);
-            int SchoolYearSelectIndex = cboSchoolYear.Items.Add(int.Parse(SchoolYear));
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) + 1);
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) + 2);
-            cboSchoolYear.SelectedIndex = SchoolYearSelectIndex;
-            //學期
-            cboSemester.Items.Add(1);
-            cboSemester.Items.Add(2);
-            cboSemester.SelectedIndex = Semester == "1" ? 0 : 1;
+            intSchoolYear.Value = int.Parse(SchoolYear);
+            intSemester.Value = int.Parse(Semester);
             #endregion
 
 
@@ -108,24 +99,15 @@ namespace JHSchool.Behavior.MeritAndDemerit
             _errorProvider = new ErrorProvider();
 
             //學年度
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 3);
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 2);
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 1);
-            int SchoolYearSelectIndex = cboSchoolYear.Items.Add(int.Parse(SchoolYear));
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) + 1);
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) + 2);
-            cboSchoolYear.SelectedIndex = SchoolYearSelectIndex;
-            //學期
-            cboSemester.Items.Add(1);
-            cboSemester.Items.Add(2);
-            cboSemester.SelectedIndex = Semester == "1" ? 0 : 1;
+            intSchoolYear.Value = int.Parse(SchoolYear);
+            intSemester.Value = int.Parse(Semester);
             #endregion
 
             //LockMode狀態鎖住學年度學期
             if (LockMode)
             {
-                cboSchoolYear.Enabled = false;
-                cboSemester.Enabled = false;
+                intSchoolYear.Enabled = false;
+                intSemester.Enabled = false;
             }
 
             dateTimeInput1.Value = DateTime.Today;
@@ -180,8 +162,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
             btnSave.Visible = permission.Editable;
             cboReasonRef.Enabled = permission.Editable;
-            cboSchoolYear.Enabled = permission.Editable;
-            cboSemester.Enabled = permission.Editable;
+            intSchoolYear.Enabled = permission.Editable;
+            intSemester.Enabled = permission.Editable;
             dateTimeInput1.Enabled = permission.Editable;
             dateTimeInput2.Enabled = permission.Editable;
             foreach (Control each in Controls)
@@ -200,17 +182,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
             _errorProvider = new ErrorProvider();
 
             //學年度
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 3);
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 2);
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) - 1);
-            int SchoolYearSelectIndex = cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear));
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) + 1);
-            cboSchoolYear.Items.Add(int.Parse(JHSchool.School.DefaultSchoolYear) + 2);
-            cboSchoolYear.SelectedIndex = SchoolYearSelectIndex;
-            //學期
-            cboSemester.Items.Add(1);
-            cboSemester.Items.Add(2);
-            cboSemester.SelectedIndex = JHSchool.School.DefaultSemester == "1" ? 0 : 1;
+            intSchoolYear.Value = int.Parse(K12.Data.School.DefaultSchoolYear);
+            intSemester.Value = int.Parse(K12.Data.School.DefaultSemester);
             #endregion
         }
 
@@ -251,8 +224,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 txt1.Text = _meritRecordEditor.MeritA.ToString();
                 txt2.Text = _meritRecordEditor.MeritB.ToString();
                 txt3.Text = _meritRecordEditor.MeritC.ToString();
-                cboSchoolYear.Text = _meritRecordEditor.SchoolYear.ToString();
-                cboSemester.Text = _meritRecordEditor.Semester.ToString();
+                intSchoolYear.Text = _meritRecordEditor.SchoolYear.ToString();
+                intSemester.Text = _meritRecordEditor.Semester.ToString();
 
                 dateTimeInput1.Value = _meritRecordEditor.OccurDate;
 
@@ -425,21 +398,6 @@ namespace JHSchool.Behavior.MeritAndDemerit
             #endregion
         }
 
-        private void cboSchoolYear_Validated(object sender, EventArgs e)
-        {
-            _errorProvider.SetError(cboSchoolYear, null);
-            int i;
-            if (!int.TryParse(cboSchoolYear.Text, out i))
-                _errorProvider.SetError(cboSchoolYear, "學年度必須為整數數字");
-        }
-
-        private void cboSemester_Validated(object sender, EventArgs e)
-        {
-            _errorProvider.SetError(cboSemester, null);
-            if (cboSemester.Text != "1" && cboSemester.Text != "2")
-                _errorProvider.SetError(cboSemester, "學期必須填入1或2");
-        }
-
         private void txt1_Validated(object sender, EventArgs e)
         {
             this.Text_Validate(this.txt1);
@@ -523,8 +481,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
         {
             //把畫面的資料填回 MeritRecordEditor 物件中
 
-            editor.SchoolYear = int.Parse(cboSchoolYear.Text);
-            editor.Semester = int.Parse(cboSemester.Text);
+            editor.SchoolYear = intSchoolYear.Value;
+            editor.Semester = intSemester.Value;
             editor.MeritA = ChangeInt(txt1.Text);
             editor.MeritB = ChangeInt(txt2.Text);
             editor.MeritC = ChangeInt(txt3.Text);
