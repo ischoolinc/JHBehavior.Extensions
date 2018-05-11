@@ -48,5 +48,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
         {
             this.DialogResult = System.Windows.Forms.DialogResult.No;
         }
+
+
     }
 }

@@ -224,17 +224,20 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
                 foreach (AutoSummaryRecord each in AutoSummaryList)
                 {
-                    if (each.DemeritA + each.DemeritB + each.DemeritC + each.MeritA + each.MeritB + each.MeritC == 0) continue;
+                    // 2018/05/11 羿均註解下列程式碼，
+                    //if (each.DemeritA + each.DemeritB + each.DemeritC + each.MeritA + each.MeritB + each.MeritC == 0) continue;
+                    
                     ListViewItem itms = new ListViewItem(each.SchoolYear.ToString());
                     itms.SubItems.Add(each.Semester.ToString());
 
-                    itms.SubItems.Add(each.MeritA.ToString());
-                    itms.SubItems.Add(each.MeritB.ToString());
-                    itms.SubItems.Add(each.MeritC.ToString());
-                    itms.SubItems.Add(each.DemeritA.ToString());
-                    itms.SubItems.Add(each.DemeritB.ToString());
-                    itms.SubItems.Add(each.DemeritC.ToString());
+                    itms.SubItems.Add(each.MeritA == 0 ? "" : each.MeritA.ToString());
+                    itms.SubItems.Add(each.MeritB == 0 ? "" : each.MeritB.ToString());
+                    itms.SubItems.Add(each.MeritC == 0 ? "" : each.MeritC.ToString());
+                    itms.SubItems.Add(each.DemeritA == 0 ? "" : each.DemeritA.ToString());
+                    itms.SubItems.Add(each.DemeritB == 0 ? "" : each.DemeritB.ToString());
+                    itms.SubItems.Add(each.DemeritC == 0 ? "" : each.DemeritC.ToString());
                     itms.Tag = each;
+
                     listView.Items.Add(itms);
                 }
             }
