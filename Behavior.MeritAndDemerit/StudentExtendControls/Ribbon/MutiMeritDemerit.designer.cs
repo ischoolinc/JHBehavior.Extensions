@@ -246,9 +246,9 @@
             // 
             // Column13
             // 
+            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column13.HeaderText = "事由";
             this.Column13.Name = "Column13";
-            this.Column13.Width = 300;
             // 
             // buttonX2
             // 
