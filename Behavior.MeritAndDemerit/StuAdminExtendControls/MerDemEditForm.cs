@@ -14,8 +14,8 @@ using SmartSchool.Common;
 using JHSchool.Feature;
 using Framework;
 using JHSchool.Behavior.Feature;
-using JHSchool.Data;
 using FISCA.LogAgent;
+using K12.Data;
 //using SmartSchool;
 
 namespace JHSchool.Behavior.MeritAndDemerit
@@ -32,17 +32,16 @@ namespace JHSchool.Behavior.MeritAndDemerit
         //private List<string> students = new List<string>(); //待處理使用
         //private List<string> studentsList = new List<string>(); //待處理使用
 
-        Dictionary<string, List<JHStudentRecord>> classList; //班級名稱,學生List
-        List<JHClassRecord> Classes; //全校班級
-        List<JHStudentRecord> Students; //全校學生
+        Dictionary<string, List<StRecord>> classList; //班級名稱,學生List
+        List<K12.Data.ClassRecord> Classes; //全校班級
+        List<StRecord> Students; //全校學生
 
-        List<JHDisciplineRecord> DisciplineList = new List<JHDisciplineRecord>();
+        List<K12.Data.DisciplineRecord> DisciplineList = new List<K12.Data.DisciplineRecord>();
 
-        List<JHStudentRecord> studList = new List<JHStudentRecord>();
-
+        Dictionary<string, StRecord> studDic;
         List<string> DelRowIdList = new List<string>();
 
-        List<JHDisciplineRecord> DelRowRecordList = new List<JHDisciplineRecord>();
+        List<K12.Data.DisciplineRecord> DelRowRecordList = new List<K12.Data.DisciplineRecord>();
 
         int ConBoxIndex = 0;
 
@@ -50,6 +49,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
         private string _endDate;
 
         private string _txtReason;
+
+        List<string> DicDisciplineStudList = new List<string>(); //列印清單
 
         private bool Waiting
         {
@@ -114,30 +115,47 @@ namespace JHSchool.Behavior.MeritAndDemerit
         {
             #region 建立班級資訊
 
-            classList = new Dictionary<string, List<JHStudentRecord>>();
-            classList.Clear();
+            classList = new Dictionary<string, List<StRecord>>();
+            Classes = K12.Data.Class.SelectAll();
+            Students = GetStudent();
 
-            Classes = new List<JHClassRecord>();
-            Classes.Clear();
-            Students = new List<JHStudentRecord>();
-            Students.Clear();
+            Students.Sort(new Comparison<StRecord>(SortComparerInStudent));
 
-            Classes = JHClass.SelectAll();
-            Students = JHStudent.SelectAll();
-
-            Students.Sort(new Comparison<JHStudentRecord>(SortComparerInStudent));
-
-            foreach (JHStudentRecord eachstudent in Students)
+            foreach (StRecord eachstudent in Students)
             {
                 if (!string.IsNullOrEmpty(eachstudent.RefClassID))
                 {
-                    if (!classList.ContainsKey(eachstudent.Class.Name))
-                        classList.Add(eachstudent.Class.Name, new List<JHStudentRecord>());
+                    if (!classList.ContainsKey(eachstudent.ClassName))
+                        classList.Add(eachstudent.ClassName, new List<StRecord>());
 
-                    classList[eachstudent.Class.Name].Add(eachstudent);
+                    classList[eachstudent.ClassName].Add(eachstudent);
                 }
             }
             #endregion
+        }
+
+        private List<StRecord> GetStudent()
+        {
+            studDic = new Dictionary<string, StRecord>();
+            List<StRecord> list = new List<StRecord>();
+            DataTable dt = tool._Q.Select(@"select student.id as student_id,student.name as student_name,
+student.student_number,student.gender,student.seat_no,
+class.id as class_id,class.class_name
+from student 
+left join class on class.id=student.ref_class_id");
+            foreach (DataRow row in dt.Rows)
+            {
+                StRecord st = new StRecord(row);
+                list.Add(st);
+
+                if (!studDic.ContainsKey(st.StudentID))
+                {
+                    studDic.Add(st.StudentID, st);
+                }
+            }
+
+            list.Sort(new Comparison<StRecord>(SortComparerInStudent));
+            return list;
         }
 
         private void InitialBackgroundWorker()
@@ -245,8 +263,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 txtSeatNo.Visible = false; //隱藏座號控制
                 txtSeatNo.Text = ""; //清空座號內容
 
-                Students.Clear();
-                Students = JHStudent.SelectAll();
+                Students = GetStudent();
 
             }
             #endregion
@@ -258,19 +275,19 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
             cbClass.Items.Clear(); //清空下拉式選單
             cbClass.DisplayMember = "Key";
-            Classes.Sort(new Comparison<JHClassRecord>(SortComparer)); //排序
+            Classes.Sort(new Comparison<K12.Data.ClassRecord>(SortComparer)); //排序
 
-            Dictionary<string, List<JHClassRecord>> dic = new Dictionary<string, List<JHClassRecord>>();
+            Dictionary<string, List<K12.Data.ClassRecord>> dic = new Dictionary<string, List<K12.Data.ClassRecord>>();
             List<string> dicSort = new List<string>();
 
-            foreach (JHClassRecord DCA in Classes)
+            foreach (K12.Data.ClassRecord DCA in Classes)
             {
                 if (DCA.GradeYear == null)
                     continue;
 
                 if (!dic.ContainsKey(DCA.GradeYear.ToString()))
                 {
-                    dic.Add(DCA.GradeYear.ToString(), new List<JHClassRecord>());
+                    dic.Add(DCA.GradeYear.ToString(), new List<K12.Data.ClassRecord>());
                     dicSort.Add(DCA.GradeYear.ToString());
                 }
 
@@ -281,7 +298,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
             foreach (string each in dicSort)
             {
-                KeyValuePair<string, List<JHClassRecord>> KKBOX = new KeyValuePair<string, List<JHClassRecord>>(each, dic[each]);
+                KeyValuePair<string, List<K12.Data.ClassRecord>> KKBOX = new KeyValuePair<string, List<K12.Data.ClassRecord>>(each, dic[each]);
                 cbClass.Items.Add(KKBOX);
             }
 
@@ -294,29 +311,29 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
             cbClass.Items.Clear(); //清空下拉式選單
             cbClass.DisplayMember = "Key";
-            Classes.Sort(new Comparison<JHClassRecord>(SortComparer)); //排序
+            Classes.Sort(new Comparison<K12.Data.ClassRecord>(SortComparer)); //排序
 
-            foreach (JHClassRecord DCA in Classes)
+            foreach (K12.Data.ClassRecord DCA in Classes)
             {
                 if (DCA.Name == string.Empty)
                     continue;
-                KeyValuePair<string, JHClassRecord> KKBOX = new KeyValuePair<string, JHClassRecord>(DCA.Name, DCA);
+                KeyValuePair<string, K12.Data.ClassRecord> KKBOX = new KeyValuePair<string, K12.Data.ClassRecord>(DCA.Name, DCA);
                 cbClass.Items.Add(KKBOX);
             }
             #endregion
         }
 
-        private int SortComparer(JHClassRecord x, JHClassRecord y)
+        private int SortComparer(K12.Data.ClassRecord x, K12.Data.ClassRecord y)
         {
             string xx = x.Name;
             string yy = y.Name;
             return xx.CompareTo(yy);
         }
 
-        private int SortComparerInStudent(JHStudentRecord x, JHStudentRecord y)
+        private int SortComparerInStudent(StRecord x, StRecord y)
         {
             #region 排序學生
-            if (x.Class == null || y.Class == null)
+            if (x.RefClassID == "" || y.RefClassID == "")
             {
                 string xx = "" + x.StudentNumber;
                 string yy = "" + y.StudentNumber;
@@ -324,8 +341,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
             }
             else
             {
-                string xx = "" + x.Class.Name + x.SeatNo;
-                string yy = "" + y.Class.Name + y.SeatNo;
+                string xx = "" + x.ClassName + x.SeatNo;
+                string yy = "" + y.ClassName + y.SeatNo;
                 return xx.CompareTo(yy);
             }
             #endregion
@@ -344,26 +361,30 @@ namespace JHSchool.Behavior.MeritAndDemerit
             if (cbRange.SelectedIndex == 0)
             {
                 #region 班級座號
-                KeyValuePair<string, JHClassRecord> item = (KeyValuePair<string, JHClassRecord>)cbClass.SelectedItem;
-                List<JHStudentRecord> stulist = item.Value.Students;
+                KeyValuePair<string, ClassRecord> item = (KeyValuePair<string, ClassRecord>)cbClass.SelectedItem;
+                ClassRecord classR = item.Value;
+                StRecord SeleteStud = null;
 
-                JHStudentRecord SeleteStud = new JHStudentRecord();
-
-                foreach (JHStudentRecord stud in stulist)
+                if (classList.ContainsKey(classR.Name))
                 {
-                    if (stud.SeatNo == null)
-                    {
-                        continue;
-                    }
+                    List<StRecord> stulist = classList[classR.Name];
 
-                    if ("" + stud.SeatNo == txtSeatNo.Text)
+                    foreach (StRecord stud in stulist)
                     {
-                        SeleteStud = stud;
-                        break;
+                        if (stud.SeatNo == null)
+                        {
+                            continue;
+                        }
+
+                        if ("" + stud.SeatNo == txtSeatNo.Text)
+                        {
+                            SeleteStud = stud;
+                            break;
+                        }
                     }
                 }
 
-                if (SeleteStud.ID == null)
+                if (SeleteStud == null)
                 {
                     FISCA.Presentation.Controls.MsgBox.Show("查無此座號,請重新輸入");
                     btnRefresh.Enabled = true;
@@ -373,7 +394,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 }
                 else
                 {
-                    List<JHStudentRecord> NowList = new List<JHStudentRecord>();
+                    List<StRecord> NowList = new List<StRecord>();
                     NowList.Add(SeleteStud);
                     _loader.RunWorkerAsync(NowList);
                 }
@@ -382,18 +403,18 @@ namespace JHSchool.Behavior.MeritAndDemerit
             else if (cbRange.SelectedIndex == 1)
             {
                 #region 學號
-                JHStudentRecord SeleteStud = new JHStudentRecord();
+                StRecord SeleteStud = null;
 
-                foreach (JHStudentRecord stud in Students)
+                foreach (StRecord stud in Students)
                 {
-                    if (stud.StudentNumber == txtClass.Text)
+                    if (stud.StudentNumber.ToLower() == txtClass.Text.Trim().ToLower())
                     {
                         SeleteStud = stud;
                         break;
                     }
                 }
 
-                if (SeleteStud.ID == null)
+                if (SeleteStud == null)
                 {
                     FISCA.Presentation.Controls.MsgBox.Show("查無此學號,請重新輸入");
                     btnRefresh.Enabled = true;
@@ -402,7 +423,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 }
                 else
                 {
-                    List<JHStudentRecord> NowList = new List<JHStudentRecord>();
+                    List<StRecord> NowList = new List<StRecord>();
                     NowList.Add(SeleteStud);
                     _loader.RunWorkerAsync(NowList);
                 }
@@ -411,7 +432,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
             else if (cbRange.SelectedIndex == 2)
             {
                 #region 班級
-                KeyValuePair<string, JHClassRecord> item = (KeyValuePair<string, JHClassRecord>)cbClass.SelectedItem;
+                KeyValuePair<string, K12.Data.ClassRecord> item = (KeyValuePair<string, K12.Data.ClassRecord>)cbClass.SelectedItem;
 
                 if (item.Value.Students.Count == 0)
                 {
@@ -421,20 +442,31 @@ namespace JHSchool.Behavior.MeritAndDemerit
                     return;
                 }
 
-                _loader.RunWorkerAsync(item.Value.Students);
+                if (classList.ContainsKey(item.Value.Name))
+                {
+                    List<StRecord> stud = classList[item.Value.Name];
+                    _loader.RunWorkerAsync(stud);
+                }
                 #endregion
             }
             else if (cbRange.SelectedIndex == 3)
             {
                 #region 年級
-                KeyValuePair<string, List<JHClassRecord>> item = (KeyValuePair<string, List<JHClassRecord>>)cbClass.SelectedItem;
+                KeyValuePair<string, List<K12.Data.ClassRecord>> item = (KeyValuePair<string, List<K12.Data.ClassRecord>>)cbClass.SelectedItem;
+                List<K12.Data.ClassRecord> classRList = item.Value;
+                List<StRecord> stud = new List<StRecord>();
+                //
+                //ClassRecord classR = item.Value;
+                //StRecord SeleteStud = null;
 
-                List<JHStudentRecord> stud = new List<JHStudentRecord>();
-
-                foreach (JHClassRecord STUD in item.Value)
+                foreach (K12.Data.ClassRecord cr in classRList)
                 {
-                    stud.AddRange(STUD.Students);
+                    if (classList.ContainsKey(cr.Name))
+                    {
+                        stud.AddRange(classList[cr.Name]);
+                    }
                 }
+
                 _loader.RunWorkerAsync(stud);
                 #endregion
             }
@@ -452,15 +484,15 @@ namespace JHSchool.Behavior.MeritAndDemerit
         {
             #region 開始執行背景作業
 
-            List<JHStudentRecord> studList = (List<JHStudentRecord>)e.Argument;
+            List<StRecord> studList = (List<StRecord>)e.Argument;
 
             List<string> list = new List<string>();
 
-            foreach (JHStudentRecord each in studList)
+            foreach (StRecord each in studList)
             {
-                if (!list.Contains(each.ID))
+                if (!list.Contains(each.StudentID))
                 {
-                    list.Add(each.ID);
+                    list.Add(each.StudentID);
                 }
             }
 
@@ -470,9 +502,9 @@ namespace JHSchool.Behavior.MeritAndDemerit
             {
                 if (ConBoxIndex == 0) //缺曠日期
                 {
-                    foreach (JHDisciplineRecord each in JHDiscipline.SelectByOccurDate(list, dateTimeInput1.Value, dateTimeInput2.Value))
+                    foreach (DisciplineRecord each in Discipline.SelectByOccurDate(list, dateTimeInput1.Value, dateTimeInput2.Value))
                     {
-                        if (each.Reason.Contains(_txtReason))
+                        if (each.Reason.ToLower().Contains(_txtReason.ToLower()) || each.Remark.ToLower().Contains(_txtReason.ToLower()))
                         {
                             DisciplineList.Add(each);
                         }
@@ -481,9 +513,9 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 }
                 else if (ConBoxIndex == 1) //登錄日期
                 {
-                    foreach (JHDisciplineRecord each in JHDiscipline.SelectByRegisterDate(list, dateTimeInput1.Value, dateTimeInput2.Value))
+                    foreach (DisciplineRecord each in Discipline.SelectByRegisterDate(list, dateTimeInput1.Value, dateTimeInput2.Value))
                     {
-                        if (each.Reason.Contains(_txtReason))
+                        if (each.Reason.ToLower().Contains(_txtReason.ToLower()) || each.Remark.ToLower().Contains(_txtReason.ToLower()))
                         {
                             DisciplineList.Add(each);
                         }
@@ -500,37 +532,10 @@ namespace JHSchool.Behavior.MeritAndDemerit
             }
 
             DisciplineList.Sort(SortByClassAndSeatNo); //排序
-
-            //DicDiscipline = new Dictionary<string, List<JHDisciplineRecord>>();
-            //DicDiscipline.Clear();
-
-            //List<string> studSortList = new List<string>();
-
-            //foreach (JHDisciplineRecord each in DisciplineList)
-            //{
-            //    if (!DicDiscipline.ContainsKey(each.RefStudentID))
-            //    {
-            //        studSortList.Add(each.RefStudentID);
-            //        DicDiscipline.Add(each.RefStudentID, new List<JHDisciplineRecord>());
-            //    }
-            //    DicDiscipline[each.RefStudentID].Add(each);
-            //}
-
-            //List<JHStudentRecord> JKlist = JHStudent.SelectByIDs(studSortList);
-            //JKlist.Sort(new Comparison<JHStudentRecord>(SchoolYearComparer)); //排序
-
-            //DicDisciplineStudList.Clear();
-            //foreach (JHStudentRecord each in JKlist)
-            //{
-            //    DicDisciplineStudList.Add(each.ID);
-            //}
-
+            
             #endregion
         }
-
-        List<string> DicDisciplineStudList = new List<string>(); //列印清單
-
-
+        
         private void _loader_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             #region 背景作業完成
@@ -553,7 +558,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
             #endregion
         }
 
-        private bool CheckMerit(JHDisciplineRecord JH, List<string> li)
+        private bool CheckMerit(DisciplineRecord JH, List<string> li)
         {
             #region 處理資料是否顯示
             List<string> st = new List<string>();
@@ -618,88 +623,77 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
             List<string> StudentCount = new List<string>();
 
-            foreach (JHDisciplineRecord eachDis in DisciplineList)
+            foreach (DisciplineRecord eachDis in DisciplineList)
             {
-                JHStudentRecord SR = JHStudent.SelectByID(eachDis.RefStudentID); //取得學生
 
-                string discipline = GetDisciplineString(eachDis);
-
-                if (discipline == "")
-                    continue;
-
-                if (eachDis.MeritFlag == "0") //是懲戒
+                //取得學生
+                if (studDic.ContainsKey(eachDis.RefStudentID))
                 {
-                    if (eachDis.Cleared == "是") //已消過就離開
-                    {
+                    StRecord SR = studDic[eachDis.RefStudentID];
+
+
+                    string discipline = GetDisciplineString(eachDis);
+
+                    if (discipline == "")
                         continue;
+
+                    if (eachDis.MeritFlag == "0") //是懲戒
+                    {
+                        if (eachDis.Cleared == "是") //已消過就離開
+                        {
+                            continue;
+                        }
                     }
+
+                    if (CheckMerit(eachDis, jone)) //如果不是CheckBox所勾選內容
+                        continue;
+
+                    if (!StudentCount.Contains(eachDis.RefStudentID))
+                    {
+                        StudentCount.Add(eachDis.RefStudentID); //學生人數統計
+                    }
+
+                    DataGridViewRow _row = new DataGridViewRow();
+                    _row.CreateCells(dataGridViewX1);
+
+                    _row.Cells[0].Value = eachDis.ID; //獎懲編號
+                    _row.Cells[1].Value = eachDis.RefStudentID; //系統編號
+                    _row.Cells[2].Value = eachDis.OccurDate.ToShortDateString(); //獎懲日期
+                    if (SR.ClassName != "")
+                    {
+                        _row.Cells[3].Value = SR.ClassName; //班級
+                    }
+                    _row.Cells[4].Value = SR.SeatNo; //座號
+                    _row.Cells[5].Value = SR.StudentNumber; //學號
+                    _row.Cells[6].Value = SR.StudentName; //姓名
+                    _row.Cells[7].Value = SR.Gender; //性別
+                    _row.Cells[8].Value = discipline; //獎懲次數
+                    _row.Cells[9].Value = eachDis.Reason; //事由
+                    _row.Cells[10].Value = eachDis.Remark; //備註 2019/12/24 新增
+                    _row.Cells[11].Value = eachDis.SchoolYear; //學年度
+                    _row.Cells[12].Value = eachDis.Semester; //學期
+                    if (eachDis.RegisterDate.HasValue)
+                    {
+                        _row.Cells[13].Value = eachDis.RegisterDate.Value.ToShortDateString();
+                    }
+                    _row.Cells[14].Value = eachDis.MeritFlag; //獎懲區分
+
+                    _row.Tag = eachDis;
+
+                    dataGridViewX1.Rows.Add(_row);
                 }
 
-                if (CheckMerit(eachDis, jone)) //如果不是CheckBox所勾選內容
-                    continue;
+                txtHelpStudentCount.Text = "學生人數：" + StudentCount.Count;
 
-                if (!StudentCount.Contains(eachDis.RefStudentID))
-                {
-                    StudentCount.Add(eachDis.RefStudentID); //學生人數統計
-                }
+                dataGridViewX1.ResumeLayout();
 
-                DataGridViewRow _row = new DataGridViewRow();
-                _row.CreateCells(dataGridViewX1);
-
-                _row.Cells[0].Value = eachDis.ID; //獎懲編號
-                _row.Cells[1].Value = eachDis.RefStudentID; //系統編號
-                _row.Cells[2].Value = eachDis.OccurDate.ToShortDateString(); //獎懲日期
-                if (SR.Class != null)
-                {
-                    _row.Cells[3].Value = SR.Class.Name; //班級
-                }
-                _row.Cells[4].Value = SR.SeatNo; //座號
-                _row.Cells[5].Value = SR.StudentNumber; //學號
-                _row.Cells[6].Value = SR.Name; //姓名
-                _row.Cells[7].Value = SR.Gender; //性別
-                _row.Cells[8].Value = discipline; //獎懲次數
-                _row.Cells[9].Value = eachDis.Reason; //事由
-                _row.Cells[10].Value = eachDis.SchoolYear; //學年度
-                _row.Cells[11].Value = eachDis.Semester; //學期
-                if (eachDis.RegisterDate.HasValue)
-                {
-                    _row.Cells[12].Value = eachDis.RegisterDate.Value.ToShortDateString(); //學期
-                }
-                _row.Cells[13].Value = eachDis.MeritFlag; //獎懲區分
-
-                _row.Tag = eachDis;
-
-                dataGridViewX1.Rows.Add(_row);
+                if (dataGridViewX1.Rows.Count > 0)
+                    dataGridViewX1.Rows[0].Selected = false;
+                #endregion
             }
-
-            txtHelpStudentCount.Text = "學生人數：" + StudentCount.Count;
-
-            dataGridViewX1.ResumeLayout();
-
-            if (dataGridViewX1.Rows.Count > 0)
-                dataGridViewX1.Rows[0].Selected = false;
-            #endregion
         }
 
-        #region 時間判斷
-        //private string ChengTime(DateTime dt)
-        //{
-        //    int x = dt.ToString().IndexOf(' ');
-        //    string y = dt.ToString().Remove(x);
-        //    return y;
-        //}
-
-        //private bool IsDateTime(string date)
-        //{
-
-        //    DateTime try_value;
-        //    if (DateTime.TryParse(date, out try_value))
-        //        return true;
-        //    return false;
-        //}
-        #endregion
-
-        private string GetDisciplineString(JHDisciplineRecord JHDRecord)
+        private string GetDisciplineString(DisciplineRecord JHDRecord)
         {
             #region 獎懲判斷
             string result = "";
@@ -747,80 +741,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
             }
 
             return result;
-
-
-            //if (dis.GetText("MeritFlag") == "1") //獎勵
-            //{
-
-            //    try
-            //    {
-            //        XmlElement merit = dis.GetElement("Detail/Discipline/Merit");
-            //        if (merit == null)
-            //            return "";
-
-            //        int a, b, c;
-            //        if (int.TryParse(merit.GetAttribute("A"), out a) && a > 0)
-            //        {
-            //            result += string.Format("大功:{0}", a);
-            //        }
-
-            //        if (int.TryParse(merit.GetAttribute("B"), out b) && b > 0)
-            //        {
-            //            if (!string.IsNullOrEmpty(result)) result += ",";
-            //            result += string.Format("小功:{0}", b);
-            //        }
-
-            //        if (int.TryParse(merit.GetAttribute("C"), out c) && c > 0)
-            //        {
-            //            if (!string.IsNullOrEmpty(result)) result += ",";
-            //            result += string.Format("嘉獎:{0}", c);
-            //        }
-            //    }
-            //    catch
-            //    {
-
-            //    }
-
-            //}
-            //else if (dis.GetText("MeritFlag") == "0") //懲戒
-            //{
-            //    try
-            //    {
-
-            //        //XmlElement demerit = dis.GetElement("Detail/Discipline/Demerit");
-
-            //        //如果Cleared==是,此筆資料忽略
-            //        XmlElement demerit = dis.GetElement("Detail/Discipline/Demerit[@Cleared!='是']");
-            //        if (demerit == null)
-            //            return "";
-
-            //        int a, b, c;
-            //        if (int.TryParse(demerit.GetAttribute("A"), out a) && a > 0)
-            //        {
-            //            result += string.Format("大過:{0}", a);
-            //        }
-            //        if (int.TryParse(demerit.GetAttribute("B"), out b) && b > 0)
-            //        {
-            //            if (!string.IsNullOrEmpty(result)) result += ",";
-            //            result += string.Format("小過:{0}", b);
-            //        }
-            //        if (int.TryParse(demerit.GetAttribute("C"), out c) && c > 0)
-            //        {
-            //            if (!string.IsNullOrEmpty(result)) result += ",";
-            //            result += string.Format("警告:{0}", c);
-            //        }
-            //    }
-            //    catch
-            //    {
-
-            //    }
-
-
-            //}
-            //else if (dis.GetText("MeritFlag") == "2")
-            //{
-            //    result = "留校察看";
-            //}
+            
             #endregion
         }
 
@@ -847,11 +768,11 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
             #region 檢查選取的獎懲
 
-            List<JHDisciplineRecord> helper = new List<JHDisciplineRecord>();
+            List<K12.Data.DisciplineRecord> helper = new List<K12.Data.DisciplineRecord>();
             helper.Clear();
             foreach (DataGridViewRow each in dataGridViewX1.SelectedRows)
             {
-                helper.Add((JHDisciplineRecord)each.Tag);
+                helper.Add((K12.Data.DisciplineRecord)each.Tag);
             }
 
             bool warning = false;
@@ -900,16 +821,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
             ModifyForm form = new ModifyForm(helper);
             if (form.ShowDialog() == DialogResult.OK)
             {
-                dataGridViewX1.SuspendLayout();
-                string reason = form.NewReason;
-                string discipline = GetDisciplineString(form.Helper[0]);
-
-                foreach (DataGridViewRow row in dataGridViewX1.SelectedRows)
-                {
-                    row.Cells[colReason.Index].Value = reason;
-                    row.Cells[colDisciplineCount.Index].Value = discipline;
-                }
-                dataGridViewX1.ResumeLayout();
+                btnRefresh_Click(null, null); //更新畫面資料
             }
             #endregion
         }
@@ -949,7 +861,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 if (row.Tag != null)
                 {
                     DelRowIdList.Add("" + row.Cells[0].Value);
-                    DelRowRecordList.Add((JHDisciplineRecord)row.Tag);
+                    DelRowRecordList.Add((K12.Data.DisciplineRecord)row.Tag);
                 }
             }
             #endregion
@@ -1015,7 +927,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 StringBuilder sbDEL = new StringBuilder();
                 sbDEL.AppendLine("已進行批次刪除獎懲資料");
                 sbDEL.AppendLine("刪除資料如下：");
-                foreach (JHDisciplineRecord each in DelRowRecordList)
+                foreach (K12.Data.DisciplineRecord each in DelRowRecordList)
                 {
                     if (each.MeritFlag == "1")
                     {
@@ -1041,7 +953,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 }
                 try
                 {
-                    JHDiscipline.Delete(DelRowIdList);
+                    K12.Data.Discipline.Delete(DelRowIdList);
                 }
                 catch
                 {
@@ -1063,10 +975,10 @@ namespace JHSchool.Behavior.MeritAndDemerit
         }
 
         //排序
-        private int SortByClassAndSeatNo(JHDisciplineRecord attendX, JHDisciplineRecord attendy)
+        private int SortByClassAndSeatNo(DisciplineRecord attendX, DisciplineRecord attendy)
         {
-            JHStudentRecord x = attendX.Student;
-            JHStudentRecord y = attendy.Student;
+            K12.Data.StudentRecord x = attendX.Student;
+            K12.Data.StudentRecord y = attendy.Student;
             string 班級名稱1 = (x.Class == null ? "" : x.Class.Name) + "::";
             string 座號1 = (x.SeatNo.HasValue ? x.SeatNo.Value.ToString().PadLeft(2, '0') : "") + "::";
             string 班級名稱2 = (y.Class == null ? "" : y.Class.Name) + "::";
@@ -1103,10 +1015,10 @@ namespace JHSchool.Behavior.MeritAndDemerit
             #region 獎懲事由
             if (dataGridViewX1.SelectedRows.Count <= 0) return;
 
-            List<JHDisciplineRecord> helper = new List<JHDisciplineRecord>();
+            List<K12.Data.DisciplineRecord> helper = new List<K12.Data.DisciplineRecord>();
             foreach (DataGridViewRow each in dataGridViewX1.SelectedRows)
             {
-                helper.Add((JHDisciplineRecord)each.Tag);
+                helper.Add((K12.Data.DisciplineRecord)each.Tag);
             }
 
             ChangeTextForm ctf = new ChangeTextForm(helper);
@@ -1139,10 +1051,10 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
         private void 修改學年度學期ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<JHDisciplineRecord> list = new List<JHDisciplineRecord>();
+            List<K12.Data.DisciplineRecord> list = new List<K12.Data.DisciplineRecord>();
             foreach (DataGridViewRow row in dataGridViewX1.SelectedRows)
             {
-                JHDisciplineRecord jhd = (JHDisciplineRecord)row.Tag;
+                K12.Data.DisciplineRecord jhd = (K12.Data.DisciplineRecord)row.Tag;
                 list.Add(jhd);
             }
 
@@ -1154,7 +1066,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 sb.AppendLine("已進行批次修改獎懲資料之學年度/學期：");
                 sb.AppendLine(string.Format("以下所選取資料已指定為學年度「{0}」學期「{1}」", ssy._schoolYear.ToString(), ssy._semester.ToString()));
 
-                foreach (JHDisciplineRecord each in list)
+                foreach (K12.Data.DisciplineRecord each in list)
                 {
                     if (each.MeritFlag == "0")
                     {
@@ -1176,7 +1088,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                     each.SchoolYear = ssy._schoolYear;
                     each.Semester = ssy._semester;
                 }
-                JHDiscipline.Update(list);
+                K12.Data.Discipline.Update(list);
 
                 ApplicationLog.Log("獎懲批次修改", "更新", sb.ToString());
                 FISCA.Presentation.Controls.MsgBox.Show("儲存成功!");
@@ -1190,10 +1102,10 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
         private void 批次增加前置詞ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<JHDisciplineRecord> list = new List<JHDisciplineRecord>();
+            List<K12.Data.DisciplineRecord> list = new List<K12.Data.DisciplineRecord>();
             foreach (DataGridViewRow row in dataGridViewX1.SelectedRows)
             {
-                JHDisciplineRecord jhd = (JHDisciplineRecord)row.Tag;
+                K12.Data.DisciplineRecord jhd = (K12.Data.DisciplineRecord)row.Tag;
                 list.Add(jhd);
             }
 
@@ -1207,5 +1119,57 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
 
         }
+
+        private void 修改備註資料ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            #region 批次修改獎懲備註
+            if (dataGridViewX1.SelectedRows.Count <= 0) return;
+
+            List<DisciplineRecord> helper = new List<DisciplineRecord>();
+            foreach (DataGridViewRow each in dataGridViewX1.SelectedRows)
+            {
+                helper.Add((DisciplineRecord)each.Tag);
+            }
+
+            ChangeRemarkForm ctf = new ChangeRemarkForm(helper);
+            DialogResult dr = ctf.ShowDialog();
+
+            if (dr == System.Windows.Forms.DialogResult.Yes)
+            {
+                btnRefresh_Click(null, null); //更新畫面資料
+            }
+            #endregion
+        }
+    }
+
+    class StRecord
+    {
+        public StRecord(DataRow row)
+        {
+            StudentID = "" + row["student_id"];
+            StudentName = "" + row["student_name"];
+            StudentNumber = "" + row["student_number"];
+
+            if ("" + row["gender"] == "0")
+                Gender = "女";
+            else if ("" + row["gender"] == "1")
+                Gender = "男";
+            else
+                Gender = "";
+
+            SeatNo = "" + row["seat_no"];
+            ClassName = "" + row["class_name"];
+            RefClassID = "" + row["class_id"];
+        }
+
+        public string StudentID { get; set; }
+        public string StudentName { get; set; }
+        public string StudentNumber { get; set; }
+        public string Gender { get; set; }
+        public string SeatNo { get; set; }
+        public string ClassName { get; set; }
+        public string RefClassID { get; set; }
+
+
     }
 }

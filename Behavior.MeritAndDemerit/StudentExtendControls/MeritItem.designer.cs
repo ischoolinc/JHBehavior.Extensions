@@ -41,13 +41,14 @@
             this.btnUpdate = new DevComponents.DotNetBar.ButtonX();
             this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.btnView = new DevComponents.DotNetBar.ButtonX();
+            this.colRemark = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView
             // 
-            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // 
             // 
@@ -61,7 +62,8 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.colRemark});
             this.listView.FullRowSelect = true;
             this.listView.HideSelection = false;
             this.listView.Location = new System.Drawing.Point(15, 15);
@@ -153,6 +155,11 @@
             this.btnView.Text = "檢視";
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
+            // colRemark
+            // 
+            this.colRemark.Text = "備註";
+            this.colRemark.Width = 100;
+            // 
             // MeritItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -183,5 +190,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private DevComponents.DotNetBar.ButtonX btnView;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader colRemark;
     }
 }

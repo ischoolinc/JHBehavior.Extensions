@@ -82,6 +82,8 @@
             this.btnMeritEdit = new DevComponents.DotNetBar.ButtonX();
             this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
             this.lbHelp1 = new DevComponents.DotNetBar.LabelX();
+            this.colRemarkMerit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRemarkDemerit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.dgvDemerit)).BeginInit();
             this.groupPanelx1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
@@ -180,7 +182,8 @@
             this.CHBCleared,
             this.CHBClearedDate,
             this.CHBClearedReason,
-            this.CHBRegisterDate});
+            this.CHBRegisterDate,
+            this.colRemarkDemerit});
             this.listViewDemerit.FullRowSelect = true;
             this.listViewDemerit.HideSelection = false;
             this.listViewDemerit.Location = new System.Drawing.Point(10, 6);
@@ -445,8 +448,8 @@
             this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
             this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanel2.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
-            this.tabControlPanel2.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel2.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
             this.tabControlPanel2.Style.GradientAngle = 90;
             this.tabControlPanel2.TabIndex = 2;
             this.tabControlPanel2.TabItem = this.tabItem2;
@@ -471,8 +474,8 @@
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
-            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
             this.tabControlPanel1.Style.GradientAngle = 90;
             this.tabControlPanel1.TabIndex = 1;
             this.tabControlPanel1.TabItem = this.tabItem1;
@@ -664,7 +667,8 @@
             this.CHAMeritB,
             this.CHAMeritC,
             this.CHAReason,
-            this.CHARegisterDate});
+            this.CHARegisterDate,
+            this.colRemarkMerit});
             this.listViewMerit.FullRowSelect = true;
             this.listViewMerit.HideSelection = false;
             this.listViewMerit.Location = new System.Drawing.Point(10, 6);
@@ -774,6 +778,16 @@
             this.lbHelp1.TabIndex = 26;
             this.lbHelp1.Text = "基本說明..";
             // 
+            // colRemarkMerit
+            // 
+            this.colRemarkMerit.Text = "備註";
+            this.colRemarkMerit.Width = 100;
+            // 
+            // colRemarkDemerit
+            // 
+            this.colRemarkDemerit.Text = "備註";
+            this.colRemarkDemerit.Width = 100;
+            // 
             // DisciplineUnifytForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -782,6 +796,7 @@
             this.Controls.Add(this.lbHelp1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnExitAll);
+            this.DoubleBuffered = true;
             this.Name = "DisciplineUnifytForm";
             this.Text = "獎勵 / 懲戒學期統計";
             this.Load += new System.EventHandler(this.DemeritUnifytForm_Load);
@@ -855,5 +870,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.ColumnHeader colRemarkDemerit;
+        private System.Windows.Forms.ColumnHeader colRemarkMerit;
     }
 }

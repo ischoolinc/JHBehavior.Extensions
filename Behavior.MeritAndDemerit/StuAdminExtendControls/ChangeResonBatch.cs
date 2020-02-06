@@ -15,13 +15,13 @@ namespace JHSchool.Behavior.MeritAndDemerit
     public partial class ChangeResonBatch : BaseForm
     {
         public string ChangeText = "";
-        List<JHDisciplineRecord> _helper;
+        List<K12.Data.DisciplineRecord> _helper;
 
         public ChangeResonBatch()
         {
             InitializeComponent();
         }
-        public ChangeResonBatch(List<JHDisciplineRecord> helper)
+        public ChangeResonBatch(List<K12.Data.DisciplineRecord> helper)
         {
             InitializeComponent();
 
@@ -48,14 +48,14 @@ namespace JHSchool.Behavior.MeritAndDemerit
             {
                 ChangeText = textBoxX1.Text.Trim();
 
-                foreach (JHDisciplineRecord each in _helper)
+                foreach (K12.Data.DisciplineRecord each in _helper)
                 {
                     each.Reason = ChangeText + each.Reason;
                 }
 
                 try
                 {
-                    JHDiscipline.Update(_helper);
+                    K12.Data.Discipline.Update(_helper);
 
                     MsgBox.Show("資料儲存完成");
                     ApplicationLog.Log("獎懲批次修改", "修改", "批次增加事由前置詞「" + ChangeText + "」\n" + "共" + _helper.Count + "筆資料");

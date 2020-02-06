@@ -15,14 +15,14 @@ namespace JHSchool.Behavior.MeritAndDemerit
     public partial class ChangeTextForm : BaseForm
     {
         public string ChangeText = "";
-        List<JHDisciplineRecord> _helper;
+        List<K12.Data.DisciplineRecord> _helper;
 
         public ChangeTextForm()
         {
             InitializeComponent();
         }
 
-        public ChangeTextForm(List<JHDisciplineRecord> helper)
+        public ChangeTextForm(List<K12.Data.DisciplineRecord> helper)
         {
             InitializeComponent();
 
@@ -38,14 +38,14 @@ namespace JHSchool.Behavior.MeritAndDemerit
             {
                 ChangeText = textBoxX1.Text.Trim();
 
-                foreach (JHDisciplineRecord each in _helper)
+                foreach (K12.Data.DisciplineRecord each in _helper)
                 {
                     each.Reason = ChangeText;
                 }
 
                 try
                 {
-                    JHDiscipline.Update(_helper);
+                    K12.Data.Discipline.Update(_helper);
 
                     MsgBox.Show("資料儲存完成");
                     ApplicationLog.Log("獎懲批次修改", "修改", "批次修改事由資料\n" + "共" + _helper.Count + "筆資料");

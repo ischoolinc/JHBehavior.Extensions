@@ -15,7 +15,6 @@ using Framework.Feature;
 using JHSchool.Behavior.Legacy;
 using JHSchool.Behavior.Editor;
 using FISCA.DSAUtil;
-using JHSchool.Data;
 using FISCA.LogAgent;
 //using SmartSchool.ApplicationLog;
 
@@ -28,9 +27,9 @@ namespace JHSchool.Behavior.MeritAndDemerit
     /// </summary>
     public partial class DemeritEditForm : FISCA.Presentation.Controls.BaseForm
     {
-        private List<JHStudentRecord> _students;
+        private List<K12.Data.StudentRecord> _students;
         private ErrorProvider _errorProvider;
-        private JHDemeritRecord _demeritRecordEditor;
+        private K12.Data.DemeritRecord _demeritRecordEditor;
         private Dictionary<string, string> dicReason = new Dictionary<string, string>();
 
         private Dictionary<string, string> ResonDic = new Dictionary<string, string>();
@@ -42,7 +41,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
         /// Constructor，新增時使用。
         /// </summary>
         /// <param name="students"></param>
-        public DemeritEditForm(List<JHStudentRecord> students)
+        public DemeritEditForm(List<K12.Data.StudentRecord> students)
         {
             #region 新增
             this._students = students;
@@ -60,7 +59,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
             #endregion
         }
 
-        public DemeritEditForm(List<JHStudentRecord> students, string SchoolYear, string Semester)
+        public DemeritEditForm(List<K12.Data.StudentRecord> students, string SchoolYear, string Semester)
         {
             #region 新增
             this._students = students;
@@ -90,7 +89,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
         }
 
         //多載建構子
-        public DemeritEditForm(List<JHStudentRecord> students, string SchoolYear, string Semester,bool LockMode)
+        public DemeritEditForm(List<K12.Data.StudentRecord> students, string SchoolYear, string Semester,bool LockMode)
         {
             #region 新增
             this._students = students;
@@ -130,7 +129,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
         /// Constructor，修改時使用
         /// </summary>
         /// <param name="_demeritRecordEditor"></param>
-        public DemeritEditForm(JHDemeritRecord demeritRecordEditor,Framework.Security.FeatureAce permission)
+        public DemeritEditForm(K12.Data.DemeritRecord demeritRecordEditor,Framework.Security.FeatureAce permission)
         {
             #region 修改
             this._demeritRecordEditor = demeritRecordEditor;
@@ -150,17 +149,18 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 DicBeforeData.Add("警告", demeritRecordEditor.DemeritC.Value.ToString());
             }
             DicBeforeData.Add("事由", demeritRecordEditor.Reason);
+            DicBeforeData.Add("備註", demeritRecordEditor.Remark);
             #endregion
 
-            this._students = new List<JHStudentRecord>();
-            this._students.Add(JHStudent.SelectByID(demeritRecordEditor.RefStudentID));
+            this._students = new List<K12.Data.StudentRecord>();
+            this._students.Add(K12.Data.Student.SelectByID(demeritRecordEditor.RefStudentID));
 
             Initialize();
 
             if (permission.Editable)
-                Text = string.Format("懲戒管理 【 修改：{0}，{1} 】", JHStudent.SelectByID(demeritRecordEditor.RefStudentID).Name, demeritRecordEditor.OccurDate.ToShortDateString());
+                Text = string.Format("懲戒管理 【 修改：{0}，{1} 】", K12.Data.Student.SelectByID(demeritRecordEditor.RefStudentID).Name, demeritRecordEditor.OccurDate.ToShortDateString());
             else
-                Text = string.Format("懲戒管理 【 檢視：{0}，{1} 】", JHStudent.SelectByID(demeritRecordEditor.RefStudentID).Name, demeritRecordEditor.OccurDate.ToShortDateString());
+                Text = string.Format("懲戒管理 【 檢視：{0}，{1} 】", K12.Data.Student.SelectByID(demeritRecordEditor.RefStudentID).Name, demeritRecordEditor.OccurDate.ToShortDateString());
 
             btnSave.Visible = permission.Editable;
             cboReasonRef.Enabled = permission.Editable;
@@ -193,6 +193,10 @@ namespace JHSchool.Behavior.MeritAndDemerit
         private void DemeritEditor_Load(object sender, EventArgs e)
         {
             #region Load
+
+            List<string> remarkList = tool.GerRemarkTitle("0");
+            cbRemark.Items.AddRange(remarkList.ToArray());
+
             //取得懲戒的代碼和原因清單，並放到 事由代碼 的下拉式方塊中。
             DSResponse dsrsp = Config.GetDisciplineReasonList();
             cboReasonRef.SelectedItem = null;
@@ -243,6 +247,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 {
                     dateTimeInput2.Text = "";
                 }
+
+                cbRemark.Text = _demeritRecordEditor.Remark;
             }
             #endregion
         }
@@ -281,12 +287,12 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
             if (this._demeritRecordEditor == null) //新增懲戒
             {
-                List<JHDemeritRecord> LogDemeritList = new List<JHDemeritRecord>();
+                List<K12.Data.DemeritRecord> LogDemeritList = new List<K12.Data.DemeritRecord>();
 
                 try
                 {
                     LogDemeritList = Insert();
-                    JHDemerit.Insert(LogDemeritList);
+                    K12.Data.Demerit.Insert(LogDemeritList);
                 }
                 catch (Exception ex)
                 {
@@ -313,8 +319,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
                     {
                         sb.Append("警告「" + LogDemeritList[0].DemeritC.Value.ToString() + "」");
                     }
-                    sb.Append("懲戒事由「" + LogDemeritList[0].Reason + "」");
-
+                    sb.AppendLine("懲戒事由「" + LogDemeritList[0].Reason + "」");
+                    sb.AppendLine("備註「" + LogDemeritList[0].Remark + "」");
                     ApplicationLog.Log("學務系統.懲戒資料", "新增學生懲戒資料", "student", _students[0].ID, sb.ToString());
                     #endregion
                     FISCA.Presentation.Controls.MsgBox.Show("新增懲戒資料成功!");
@@ -340,9 +346,10 @@ namespace JHSchool.Behavior.MeritAndDemerit
                         sb.Append("警告「" + LogDemeritList[0].DemeritC.Value.ToString() + "」");
                     }
                     sb.AppendLine("懲戒事由「" + LogDemeritList[0].Reason + "」");
+                    sb.AppendLine("備註「" + LogDemeritList[0].Remark + "」");
 
                     sb.AppendLine("學生詳細資料：");
-                    foreach (JHDemeritRecord each in LogDemeritList)
+                    foreach (K12.Data.DemeritRecord each in LogDemeritList)
                     {
                         sb.Append("學生「" + each.Student.Name + "」");
 
@@ -375,7 +382,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 try
                 {
                     Modify();
-                    JHDemerit.Update(this._demeritRecordEditor);
+                    K12.Data.Demerit.Update(this._demeritRecordEditor);
                 }
                 catch (Exception ex)
                 {
@@ -391,6 +398,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 sb.AppendLine("小過「" + DicBeforeData["小過"] + "」變更為「" + this._demeritRecordEditor.DemeritB.Value + "」");
                 sb.AppendLine("警告「" + DicBeforeData["警告"] + "」變更為「" + this._demeritRecordEditor.DemeritC.Value + "」");
                 sb.AppendLine("懲戒事由「" + DicBeforeData["事由"] + "」變更為「" + this._demeritRecordEditor.Reason + "」");
+                sb.AppendLine("備註「" + DicBeforeData["備註"] + "」變更為「" + this._demeritRecordEditor.Remark + "」");
                 ApplicationLog.Log("學務系統.懲戒資料", "修改學生懲戒資料", "student", this._demeritRecordEditor.Student.ID, sb.ToString());
                 #endregion
                 FISCA.Presentation.Controls.MsgBox.Show("修改懲戒資料成功!");
@@ -458,14 +466,14 @@ namespace JHSchool.Behavior.MeritAndDemerit
             this.FillDataToEditor(this._demeritRecordEditor);
         }
 
-        private List<JHDemeritRecord> Insert()
+        private List<K12.Data.DemeritRecord> Insert()
         {
-            List<JHDemeritRecord> newEditors = new List<JHDemeritRecord>();
+            List<K12.Data.DemeritRecord> newEditors = new List<K12.Data.DemeritRecord>();
 
             //對所有學生，都準備好相關的 DemeritRecordEditor物件
-            foreach (JHStudentRecord sr in this._students)
+            foreach (K12.Data.StudentRecord sr in this._students)
             {
-                JHDemeritRecord dre = new JHDemeritRecord();
+                K12.Data.DemeritRecord dre = new K12.Data.DemeritRecord();
                 dre.RefStudentID = sr.ID;
                 this.FillDataToEditor(dre);
                 newEditors.Add(dre);
@@ -476,7 +484,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
         }
 
         //把畫面資料填到 Editor 中。
-        private void FillDataToEditor(JHDemeritRecord editor)
+        private void FillDataToEditor(K12.Data.DemeritRecord editor)
         {
             #region 把畫面資料填到 Editor 中
             //把畫面的資料填回 DemeritRecordEditor 物件中
@@ -486,6 +494,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
             editor.DemeritB = ChangeInt(txt2.Text);
             editor.DemeritC = ChangeInt(txt3.Text);
             editor.Reason = txtReason.Text;
+            editor.Remark = cbRemark.Text;
 
             editor.OccurDate = dateTimeInput1.Value;
             if (dateTimeInput2.Text != "")
@@ -540,6 +549,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 reasonValue = string.Join(",", list);
 
                 txtReason.Text = reasonValue;
+
             }
         }
     }

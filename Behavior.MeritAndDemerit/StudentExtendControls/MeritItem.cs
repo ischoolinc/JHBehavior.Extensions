@@ -28,7 +28,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
         //private FeatureAce _permission;
 
         internal static FeatureAce UserPermission;
-        private List<JHMeritRecord> _records = new List<JHMeritRecord>();
+        private List<K12.Data.MeritRecord> _records = new List<K12.Data.MeritRecord>();
 
         BackgroundWorker BgW = new BackgroundWorker();
         bool BkWBool = false;
@@ -40,9 +40,9 @@ namespace JHSchool.Behavior.MeritAndDemerit
             BgW.DoWork += new DoWorkEventHandler(BkW_DoWork);
             BgW.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BkW_RunWorkerCompleted);
 
-            JHMerit.AfterInsert += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_Changed);
-            JHMerit.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_Changed);
-            JHMerit.AfterUpdate += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_Changed);
+            K12.Data.Merit.AfterInsert += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_Changed);
+            K12.Data.Merit.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_Changed);
+            K12.Data.Merit.AfterUpdate += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_Changed);
 
             //暫解法
             Merit.Instance.ItemUpdated += new EventHandler<ItemUpdatedEventArgs>(Instance_ItemUpdated);
@@ -106,7 +106,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
         void BkW_DoWork(object sender, DoWorkEventArgs e)
         {
             _records.Clear();
-            _records = JHMerit.SelectByStudentIDs(new string[] { this.PrimaryKey });
+            _records = K12.Data.Merit.SelectByStudentIDs(new string[] { this.PrimaryKey });
         }
 
         void BkW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -131,9 +131,9 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 //從Cache Manager 找到該學生的懲戒記錄，並更新到畫面上。
                 this.listView.Items.Clear();
 
-                _records.Sort(new Comparison<JHMeritRecord>(SchoolYearComparer));
+                _records.Sort(new Comparison<K12.Data.MeritRecord>(SchoolYearComparer));
 
-                foreach (JHMeritRecord item in _records)
+                foreach (K12.Data.MeritRecord item in _records)
                 {
                     #region 填值
 
@@ -145,7 +145,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                     itm.SubItems.Add(item.MeritC.ToString());
                     itm.SubItems.Add(item.Reason);
                     itm.SubItems.Add(item.RegisterDate.HasValue ? item.RegisterDate.Value.ToShortDateString() : "");
-
+                    itm.SubItems.Add(item.Remark);
 
                     //將資料加入ListView
                     itm.Tag = item;
@@ -173,8 +173,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            List<JHStudentRecord> studs = new List<JHStudentRecord>();
-            studs.Add(JHStudent.SelectByID(this.PrimaryKey));
+            List<K12.Data.StudentRecord> studs = new List<K12.Data.StudentRecord>();
+            studs.Add(K12.Data.Student.SelectByID(this.PrimaryKey));
             MeritEditForm editForm = new MeritEditForm(studs);  //此編輯表單在新增模式下允許一次對多位學生新增相同的懲戒記錄，所以 Constructor 要傳入學生的集合。
             editForm.ShowDialog();
         }
@@ -192,7 +192,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 return;
             }
 
-            JHMeritRecord record = (JHMeritRecord)this.listView.SelectedItems[0].Tag;
+            K12.Data.MeritRecord record = (K12.Data.MeritRecord)this.listView.SelectedItems[0].Tag;
             MeritEditForm editForm = new MeritEditForm(record, UserPermission); //此編輯表單在修改模式下，一次只能對一位學生的某一筆懲戒記錄進行修改，所以 Constructor 就傳入一個 Editor 物件。
             editForm.ShowDialog();
         }
@@ -226,19 +226,19 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 return;
             }
 
-            List<JHMeritRecord> MeritList = new List<JHMeritRecord>();
+            List<K12.Data.MeritRecord> MeritList = new List<K12.Data.MeritRecord>();
 
             if (MsgBox.Show("確定將刪除所選擇之獎勵資料?", "確認", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
 
             foreach (ListViewItem item in listView.SelectedItems)
             {
-                JHMeritRecord editor = item.Tag as JHMeritRecord;
+                K12.Data.MeritRecord editor = item.Tag as K12.Data.MeritRecord;
                 MeritList.Add(editor);
             }
 
             try
             {
-                JHMerit.Delete(MeritList);
+                K12.Data.Merit.Delete(MeritList);
             }
             catch (Exception ex)
             {
@@ -247,8 +247,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
             }
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("學生「" + JHStudent.SelectByID(this.PrimaryKey).Name + "」");
-            foreach (JHMeritRecord me in MeritList)
+            sb.AppendLine("學生「" + K12.Data.Student.SelectByID(this.PrimaryKey).Name + "」");
+            foreach (K12.Data.MeritRecord me in MeritList)
             {
                 sb.AppendLine("日期「" + me.OccurDate.ToShortDateString() + "」");
             }
@@ -259,7 +259,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
             MsgBox.Show("刪除獎勵資料成功");
         }
 
-        private int SchoolYearComparer(JHMeritRecord x, JHMeritRecord y)
+        private int SchoolYearComparer(K12.Data.MeritRecord x, K12.Data.MeritRecord y)
         {
             return y.OccurDate.CompareTo(x.OccurDate);
         }
@@ -268,7 +268,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
         {
             if (listView.SelectedItems.Count == 1)
             {
-                MeritEditForm editor = new MeritEditForm(listView.SelectedItems[0].Tag as JHMeritRecord, UserPermission);
+                MeritEditForm editor = new MeritEditForm(listView.SelectedItems[0].Tag as K12.Data.MeritRecord, UserPermission);
                 editor.ShowDialog();
             }
         }

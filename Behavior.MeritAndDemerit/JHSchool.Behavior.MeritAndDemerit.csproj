@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\FiscaRuntime\addmodules\JHBehavior.Extensions\</OutputPath>
+    <OutputPath>..\..\..\ischool\ischool_DEV\addmodules\JHBehavior.Extensions\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -48,9 +48,15 @@
     <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\FiscaRuntime\components\DevComponents.DotNetBar2.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="FISCA">
       <HintPath>Library\FISCA.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Data, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.DSAClient">
@@ -95,10 +101,6 @@
       <HintPath>Library\JHSchool.Behavior.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="JHSchool.Data">
-      <HintPath>Library\JHSchool.Data.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="K12.Data">
       <HintPath>Library\K12.Data.dll</HintPath>
       <Private>False</Private>
@@ -134,6 +136,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\ChangeRemarkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StuAdminExtendControls\ChangeRemarkForm.designer.cs">
+      <DependentUpon>ChangeRemarkForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StuAdminExtendControls\ChangeResonBatch.cs">
       <SubType>Form</SubType>
@@ -204,10 +212,10 @@
       <DependentUpon>ClearDemeritForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StudentExtendControls\Ribbon\ColumnAddInUnify.cs" />
-    <Compile Include="StudentExtendControls\Ribbon\DisciplineUnifytForm.cs">
+    <Compile Include="StudentExtendControls\DisciplineUnifytForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StudentExtendControls\Ribbon\DisciplineUnifytForm.designer.cs">
+    <Compile Include="StudentExtendControls\DisciplineUnifytForm.designer.cs">
       <DependentUpon>DisciplineUnifytForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StudentExtendControls\Ribbon\MutiMeritDemerit.cs">
@@ -223,11 +231,15 @@
     <Compile Include="StudentExtendControls\SelectSchoolYearSemester.Designer.cs">
       <DependentUpon>SelectSchoolYearSemester.cs</DependentUpon>
     </Compile>
+    <Compile Include="tool.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StuAdminExtendControls\ChangeRemarkForm.resx">
+      <DependentUpon>ChangeRemarkForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StuAdminExtendControls\ChangeResonBatch.resx">
       <DependentUpon>ChangeResonBatch.cs</DependentUpon>
@@ -262,7 +274,7 @@
     <EmbeddedResource Include="StudentExtendControls\Ribbon\ClearDemeritForm.resx">
       <DependentUpon>ClearDemeritForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StudentExtendControls\Ribbon\DisciplineUnifytForm.resx">
+    <EmbeddedResource Include="StudentExtendControls\DisciplineUnifytForm.resx">
       <DependentUpon>DisciplineUnifytForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentExtendControls\Ribbon\MutiMeritDemerit.resx">
@@ -291,6 +303,8 @@
     <Content Include="Library\Aspose.Cells.xml" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\Aspose.Words.xml" />
+    <Content Include="Library\FISCA.Data.dll" />
+    <Content Include="Library\FISCA.Data.xml" />
     <Content Include="Library\FISCA.dll" />
     <Content Include="Library\FISCA.DSAClient.dll" />
     <Content Include="Library\FISCA.DSAUtil.dll" />

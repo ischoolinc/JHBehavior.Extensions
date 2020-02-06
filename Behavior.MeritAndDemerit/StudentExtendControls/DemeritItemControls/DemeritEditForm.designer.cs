@@ -48,6 +48,8 @@
             this.dateTimeInput2 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.intSemester = new DevComponents.Editors.IntegerInput();
             this.intSchoolYear = new DevComponents.Editors.IntegerInput();
+            this.cbRemark = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.labelX5 = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSemester)).BeginInit();
@@ -65,7 +67,7 @@
             this.cboReasonRef.Location = new System.Drawing.Point(88, 103);
             this.cboReasonRef.Name = "cboReasonRef";
             this.cboReasonRef.Size = new System.Drawing.Size(215, 25);
-            this.cboReasonRef.TabIndex = 54;
+            this.cboReasonRef.TabIndex = 9;
             this.cboReasonRef.SelectedIndexChanged += new System.EventHandler(this.cboReasonRef_SelectedIndexChanged);
             this.cboReasonRef.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cboReasonRef_KeyUp);
             // 
@@ -81,7 +83,7 @@
             this.labelX3.Location = new System.Drawing.Point(20, 105);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(60, 21);
-            this.labelX3.TabIndex = 53;
+            this.labelX3.TabIndex = 8;
             this.labelX3.Text = "事由代碼";
             // 
             // btnExit
@@ -89,10 +91,10 @@
             this.btnExit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(246, 263);
+            this.btnExit.Location = new System.Drawing.Point(246, 300);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(57, 23);
-            this.btnExit.TabIndex = 52;
+            this.btnExit.TabIndex = 17;
             this.btnExit.Text = "離開";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -101,10 +103,10 @@
             this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(182, 263);
+            this.btnSave.Location = new System.Drawing.Point(182, 300);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(57, 23);
-            this.btnSave.TabIndex = 51;
+            this.btnSave.TabIndex = 16;
             this.btnSave.Text = "儲存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -120,7 +122,7 @@
             this.txtReason.Multiline = true;
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(215, 95);
-            this.txtReason.TabIndex = 50;
+            this.txtReason.TabIndex = 11;
             this.txtReason.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtReason_KeyUp);
             // 
             // txt3
@@ -133,7 +135,7 @@
             this.txt3.Location = new System.Drawing.Point(274, 43);
             this.txt3.Name = "txt3";
             this.txt3.Size = new System.Drawing.Size(29, 25);
-            this.txt3.TabIndex = 48;
+            this.txt3.TabIndex = 5;
             this.txt3.Validated += new System.EventHandler(this.txt3_Validated);
             // 
             // txt2
@@ -146,7 +148,7 @@
             this.txt2.Location = new System.Drawing.Point(184, 43);
             this.txt2.Name = "txt2";
             this.txt2.Size = new System.Drawing.Size(29, 25);
-            this.txt2.TabIndex = 47;
+            this.txt2.TabIndex = 3;
             this.txt2.Validated += new System.EventHandler(this.txt2_Validated);
             // 
             // txt1
@@ -159,7 +161,7 @@
             this.txt1.Location = new System.Drawing.Point(88, 43);
             this.txt1.Name = "txt1";
             this.txt1.Size = new System.Drawing.Size(29, 25);
-            this.txt1.TabIndex = 46;
+            this.txt1.TabIndex = 1;
             this.txt1.Validated += new System.EventHandler(this.txt1_Validated);
             // 
             // labelX7
@@ -174,7 +176,7 @@
             this.labelX7.Location = new System.Drawing.Point(46, 133);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(34, 21);
-            this.labelX7.TabIndex = 43;
+            this.labelX7.TabIndex = 10;
             this.labelX7.Text = "事由";
             // 
             // labelX6
@@ -189,7 +191,7 @@
             this.labelX6.Location = new System.Drawing.Point(20, 75);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(60, 21);
-            this.labelX6.TabIndex = 42;
+            this.labelX6.TabIndex = 6;
             this.labelX6.Text = "懲戒日期";
             // 
             // lbl3
@@ -204,7 +206,7 @@
             this.lbl3.Location = new System.Drawing.Point(236, 45);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(34, 21);
-            this.lbl3.TabIndex = 41;
+            this.lbl3.TabIndex = 4;
             this.lbl3.Text = "警告";
             // 
             // lbl2
@@ -219,7 +221,7 @@
             this.lbl2.Location = new System.Drawing.Point(144, 45);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(34, 21);
-            this.lbl2.TabIndex = 40;
+            this.lbl2.TabIndex = 2;
             this.lbl2.Text = "小過";
             // 
             // lbl1
@@ -234,7 +236,7 @@
             this.lbl1.Location = new System.Drawing.Point(46, 45);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(34, 21);
-            this.lbl1.TabIndex = 39;
+            this.lbl1.TabIndex = 0;
             this.lbl1.Text = "大過";
             // 
             // labelX2
@@ -249,7 +251,7 @@
             this.labelX2.Location = new System.Drawing.Point(184, 15);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(34, 21);
-            this.labelX2.TabIndex = 38;
+            this.labelX2.TabIndex = 20;
             this.labelX2.Text = "學期";
             // 
             // labelX1
@@ -263,7 +265,7 @@
             this.labelX1.Location = new System.Drawing.Point(26, 15);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(54, 21);
-            this.labelX1.TabIndex = 37;
+            this.labelX1.TabIndex = 18;
             this.labelX1.Text = "學 年 度";
             // 
             // labelX4
@@ -275,10 +277,10 @@
             // 
             this.labelX4.BackgroundStyle.Class = "";
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(20, 235);
+            this.labelX4.Location = new System.Drawing.Point(20, 267);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(60, 21);
-            this.labelX4.TabIndex = 57;
+            this.labelX4.TabIndex = 14;
             this.labelX4.Text = "登錄日期";
             // 
             // dateTimeInput1
@@ -340,7 +342,7 @@
             this.dateTimeInput1.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dateTimeInput1.Name = "dateTimeInput1";
             this.dateTimeInput1.Size = new System.Drawing.Size(215, 25);
-            this.dateTimeInput1.TabIndex = 58;
+            this.dateTimeInput1.TabIndex = 7;
             // 
             // dateTimeInput2
             // 
@@ -355,7 +357,7 @@
             this.dateTimeInput2.ButtonFreeText.Checked = true;
             this.dateTimeInput2.FreeTextEntryMode = true;
             this.dateTimeInput2.IsPopupCalendarOpen = false;
-            this.dateTimeInput2.Location = new System.Drawing.Point(88, 233);
+            this.dateTimeInput2.Location = new System.Drawing.Point(88, 265);
             // 
             // 
             // 
@@ -401,7 +403,7 @@
             this.dateTimeInput2.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dateTimeInput2.Name = "dateTimeInput2";
             this.dateTimeInput2.Size = new System.Drawing.Size(215, 25);
-            this.dateTimeInput2.TabIndex = 59;
+            this.dateTimeInput2.TabIndex = 15;
             // 
             // intSemester
             // 
@@ -418,7 +420,7 @@
             this.intSemester.Name = "intSemester";
             this.intSemester.ShowUpDown = true;
             this.intSemester.Size = new System.Drawing.Size(80, 25);
-            this.intSemester.TabIndex = 65;
+            this.intSemester.TabIndex = 21;
             this.intSemester.Value = 1;
             // 
             // intSchoolYear
@@ -436,14 +438,46 @@
             this.intSchoolYear.Name = "intSchoolYear";
             this.intSchoolYear.ShowUpDown = true;
             this.intSchoolYear.Size = new System.Drawing.Size(80, 25);
-            this.intSchoolYear.TabIndex = 64;
+            this.intSchoolYear.TabIndex = 19;
             this.intSchoolYear.Value = 90;
+            // 
+            // cbRemark
+            // 
+            this.cbRemark.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbRemark.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbRemark.DisplayMember = "Text";
+            this.cbRemark.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbRemark.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            this.cbRemark.FormattingEnabled = true;
+            this.cbRemark.ItemHeight = 19;
+            this.cbRemark.Location = new System.Drawing.Point(88, 234);
+            this.cbRemark.Name = "cbRemark";
+            this.cbRemark.Size = new System.Drawing.Size(215, 25);
+            this.cbRemark.TabIndex = 13;
+            // 
+            // labelX5
+            // 
+            this.labelX5.AutoSize = true;
+            this.labelX5.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX5.BackgroundStyle.Class = "";
+            this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX5.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            this.labelX5.Location = new System.Drawing.Point(46, 236);
+            this.labelX5.Name = "labelX5";
+            this.labelX5.Size = new System.Drawing.Size(34, 21);
+            this.labelX5.TabIndex = 12;
+            this.labelX5.Text = "備註";
             // 
             // DemeritEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 298);
+            this.ClientSize = new System.Drawing.Size(324, 334);
+            this.Controls.Add(this.cbRemark);
+            this.Controls.Add(this.labelX5);
             this.Controls.Add(this.intSemester);
             this.Controls.Add(this.intSchoolYear);
             this.Controls.Add(this.dateTimeInput2);
@@ -500,5 +534,7 @@
         private DevComponents.Editors.DateTimeAdv.DateTimeInput dateTimeInput2;
         private DevComponents.Editors.IntegerInput intSemester;
         private DevComponents.Editors.IntegerInput intSchoolYear;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbRemark;
+        private DevComponents.DotNetBar.LabelX labelX5;
     }
 }

@@ -6,7 +6,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using JHSchool.Data;
 using System.Xml;
 using Framework.Security;
 using Framework;
@@ -33,19 +32,19 @@ namespace JHSchool.Behavior.MeritAndDemerit
             BGW.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BkW_RunWorkerCompleted);
 
             //獎勵更新時(統計更新)
-            JHMerit.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
-            JHMerit.AfterInsert += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
-            JHMerit.AfterUpdate += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
+            K12.Data.Merit.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
+            K12.Data.Merit.AfterInsert += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
+            K12.Data.Merit.AfterUpdate += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
 
             //懲戒更新時(統計更新)
-            JHDemerit.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
-            JHDemerit.AfterInsert += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
-            JHDemerit.AfterUpdate += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
+            K12.Data.Demerit.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
+            K12.Data.Demerit.AfterInsert += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
+            K12.Data.Demerit.AfterUpdate += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
 
             //轉入補登更新
-            JHMoralScore.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
-            JHMoralScore.AfterInsert += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
-            JHMoralScore.AfterUpdate += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
+            K12.Data.MoralScore.AfterDelete += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
+            K12.Data.MoralScore.AfterInsert += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
+            K12.Data.MoralScore.AfterUpdate += new EventHandler<K12.Data.DataChangedEventArgs>(JHMerit_AfterDelete);
 
             Group = "獎懲學期統計";
 

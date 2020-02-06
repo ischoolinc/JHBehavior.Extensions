@@ -44,7 +44,7 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRemark = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnView = new DevComponents.DotNetBar.ButtonX();
             this.SuspendLayout();
             // 
@@ -112,7 +112,7 @@
             this.columnHeader11,
             this.columnHeader7,
             this.columnHeader12,
-            this.columnHeader9});
+            this.colRemark});
             this.listView.FullRowSelect = true;
             this.listView.HideSelection = false;
             this.listView.Location = new System.Drawing.Point(13, 17);
@@ -179,10 +179,10 @@
             this.columnHeader12.Text = "登錄日期";
             this.columnHeader12.Width = 100;
             // 
-            // columnHeader9
+            // colRemark
             // 
-            this.columnHeader9.Text = "留察";
-            this.columnHeader9.Width = 0;
+            this.colRemark.Text = "備註";
+            this.colRemark.Width = 100;
             // 
             // btnView
             // 
@@ -224,13 +224,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private DevComponents.DotNetBar.ButtonX btnView;
         private System.Windows.Forms.ColumnHeader columnHeader12;
-
+        private System.Windows.Forms.ColumnHeader colRemark;
     }
 }

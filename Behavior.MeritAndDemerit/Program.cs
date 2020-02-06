@@ -43,7 +43,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
             rbItem["獎勵"].Click += delegate
             {
-                MeritEditForm editor = new MeritEditForm(JHStudent.SelectByIDs(Student.Instance.SelectedKeys));
+                MeritEditForm editor = new MeritEditForm(K12.Data.Student.SelectByIDs(Student.Instance.SelectedKeys));
                 editor.ShowDialog();
             };
 
@@ -67,7 +67,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 {
                     if (Student.Instance.SelectedList.Count > 0)
                     {
-                        MeritEditForm editor = new MeritEditForm(JHStudent.SelectByIDs(Student.Instance.SelectedKeys));
+                        MeritEditForm editor = new MeritEditForm(K12.Data.Student.SelectByIDs(Student.Instance.SelectedKeys));
                         editor.ShowDialog();
                     }
                 };
@@ -107,7 +107,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
             rbItem["懲戒"].Click += delegate
             {
-                DemeritEditForm editForm = new DemeritEditForm(JHStudent.SelectByIDs(Student.Instance.SelectedKeys));
+                DemeritEditForm editForm = new DemeritEditForm(K12.Data.Student.SelectByIDs(Student.Instance.SelectedKeys));
                 editForm.ShowDialog();
             };
 
@@ -129,7 +129,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                 {
                     if (Student.Instance.SelectedList.Count > 0)
                     {
-                        DemeritEditForm editForm = new DemeritEditForm(JHStudent.SelectByIDs(Student.Instance.SelectedKeys));
+                        DemeritEditForm editForm = new DemeritEditForm(K12.Data.Student.SelectByIDs(Student.Instance.SelectedKeys));
                         editForm.ShowDialog();
                     }
 

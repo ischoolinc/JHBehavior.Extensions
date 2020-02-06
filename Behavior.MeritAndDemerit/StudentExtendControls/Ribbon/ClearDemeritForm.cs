@@ -19,16 +19,16 @@ namespace JHSchool.Behavior.MeritAndDemerit
 {
     public partial class ClearDemeritForm : FISCA.Presentation.Controls.BaseForm
     {
-        private JHDemeritRecord editor;
+        private K12.Data.DemeritRecord editor;
 
-        public ClearDemeritForm(JHDemeritRecord cdr)
+        public ClearDemeritForm(K12.Data.DemeritRecord cdr)
         {
             InitializeComponent();
 
             this.editor = cdr;
 
             //設定銷過作業標題
-            this.Text = string.Format("銷過作業【 {0} , {1} 】", JHStudent.SelectByID(cdr.RefStudentID).Name, cdr.OccurDate.ToShortDateString());
+            this.Text = string.Format("銷過作業【 {0} , {1} 】", K12.Data.Student.SelectByID(cdr.RefStudentID).Name, cdr.OccurDate.ToShortDateString());
 
             //銷過日期預設為今天
             dateTimeInput1.Value = DateTime.Today;
@@ -48,7 +48,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
             this.editor.Cleared = "是";
             try
             {
-                JHDemerit.Update(this.editor);
+                K12.Data.Demerit.Update(this.editor);
                 this.Close();
             }
             catch (Exception ex)
