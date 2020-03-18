@@ -531,7 +531,17 @@ namespace JHSchool.Behavior.MeritAndDemerit
             sb.AppendLine("學生「" + K12.Data.Student.SelectByID(_StudentID).Name + "」");
             foreach (K12.Data.MeritRecord merit in MeritList)
             {
+                sb.AppendLine("學年度「" + merit.SchoolYear + "」");
+                sb.AppendLine("學期「" + merit.Semester + "」");
                 sb.AppendLine("日期「" + merit.OccurDate.ToShortDateString() + "」");
+
+                int a = merit.MeritA.HasValue ? merit.MeritA.Value : 0;
+                int b = merit.MeritB.HasValue ? merit.MeritB.Value : 0;
+                int c = merit.MeritC.HasValue ? merit.MeritC.Value : 0;
+                sb.AppendLine(string.Format("支數「大功：{0} 小功：{1} 嘉獎：{2}」", a, b, c));
+
+                sb.AppendLine("事由「" + merit.Reason + "」");
+                sb.AppendLine("備註「" + merit.Remark + "」");
             }
             sb.AppendLine("獎勵資料已被刪除。");
 
@@ -611,7 +621,17 @@ namespace JHSchool.Behavior.MeritAndDemerit
             sb.AppendLine("學生「" + K12.Data.Student.SelectByID(_StudentID).Name + "」");
             foreach (K12.Data.DemeritRecord demerit in DemeritList)
             {
+                sb.AppendLine("學年度「" + demerit.SchoolYear + "」");
+                sb.AppendLine("學期「" + demerit.Semester + "」");
                 sb.AppendLine("日期「" + demerit.OccurDate.ToShortDateString() + "」");
+
+                int a = demerit.DemeritA.HasValue ? demerit.DemeritA.Value : 0;
+                int b = demerit.DemeritB.HasValue ? demerit.DemeritB.Value : 0;
+                int c = demerit.DemeritC.HasValue ? demerit.DemeritC.Value : 0;
+                sb.AppendLine(string.Format("支數「大過：{0} 小過：{1} 警告：{2}」", a, b, c));
+
+                sb.AppendLine("事由「" + demerit.Reason + "」");
+                sb.AppendLine("備註「" + demerit.Remark + "」");
             }
             sb.AppendLine("懲戒資料已被刪除。");
 

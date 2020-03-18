@@ -248,9 +248,19 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("學生「" + K12.Data.Student.SelectByID(this.PrimaryKey).Name + "」");
-            foreach (K12.Data.MeritRecord me in MeritList)
+            foreach (K12.Data.MeritRecord merit in MeritList)
             {
-                sb.AppendLine("日期「" + me.OccurDate.ToShortDateString() + "」");
+                sb.AppendLine("學年度「" + merit.SchoolYear + "」");
+                sb.AppendLine("學期「" + merit.Semester + "」");
+                sb.AppendLine("日期「" + merit.OccurDate.ToShortDateString() + "」");
+
+                int a = merit.MeritA.HasValue ? merit.MeritA.Value : 0;
+                int b = merit.MeritB.HasValue ? merit.MeritB.Value : 0;
+                int c = merit.MeritC.HasValue ? merit.MeritC.Value : 0;
+                sb.AppendLine(string.Format("支數「大功：{0} 小功：{1} 嘉獎：{2}」", a, b, c));
+
+                sb.AppendLine("事由「" + merit.Reason + "」");
+                sb.AppendLine("備註「" + merit.Remark + "」");
             }
             sb.AppendLine("獎勵資料已被刪除。");
 

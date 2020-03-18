@@ -317,7 +317,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
                     }
                     if (LogDemeritList[0].DemeritC.HasValue)
                     {
-                        sb.Append("警告「" + LogDemeritList[0].DemeritC.Value.ToString() + "」");
+                        sb.AppendLine("警告「" + LogDemeritList[0].DemeritC.Value.ToString() + "」");
                     }
                     sb.AppendLine("懲戒事由「" + LogDemeritList[0].Reason + "」");
                     sb.AppendLine("備註「" + LogDemeritList[0].Remark + "」");

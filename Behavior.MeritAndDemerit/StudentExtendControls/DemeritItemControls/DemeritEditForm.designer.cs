@@ -103,7 +103,7 @@
             this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(182, 300);
+            this.btnSave.Location = new System.Drawing.Point(183, 300);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(57, 23);
             this.btnSave.TabIndex = 16;
