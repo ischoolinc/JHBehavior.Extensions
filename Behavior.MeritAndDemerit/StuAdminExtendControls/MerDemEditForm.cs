@@ -359,8 +359,8 @@ left join class on class.id=student.ref_class_id");
             if (cbRange.SelectedIndex == 0)
             {
                 #region 班級座號
-                KeyValuePair<string, ClassRecord> item = (KeyValuePair<string, ClassRecord>)cbClass.SelectedItem;
-                ClassRecord classR = item.Value;
+                KeyValuePair<string, K12.Data.ClassRecord> item = (KeyValuePair<string, K12.Data.ClassRecord>)cbClass.SelectedItem;
+                K12.Data.ClassRecord classR = item.Value;
                 StRecord SeleteStud = null;
 
                 if (classList.ContainsKey(classR.Name))
