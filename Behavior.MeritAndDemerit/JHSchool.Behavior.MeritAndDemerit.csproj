@@ -45,6 +45,10 @@
       <HintPath>..\..\JHBehavior.Extensions_KH\Behavior.MeritAndDemerit.KH\Library\Aspose.Words.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Campus.Windows">
+      <HintPath>Library\Campus.Windows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\FiscaRuntime\components\DevComponents.DotNetBar2.dll</HintPath>

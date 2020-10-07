@@ -33,21 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MerDemEditForm));
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOccurDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSeatNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStudentNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDisciplineCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRemark = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSchoolYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSemester = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRegisterDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMeritFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.批次增加前置詞ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -127,6 +112,21 @@
             this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtHelpStudentCount = new DevComponents.DotNetBar.LabelX();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOccurDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSeatNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStudentNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDisciplineCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRemark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSchoolYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSemester = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRegisterDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMeritFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -186,115 +186,6 @@
             this.dataGridViewX1.TabIndex = 24;
             this.dataGridViewX1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellDoubleClick);
             this.dataGridViewX1.SelectionChanged += new System.EventHandler(this.dataGridViewX1_SelectionChanged);
-            // 
-            // colID
-            // 
-            this.colID.HeaderText = "ID";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Visible = false;
-            this.colID.Width = 80;
-            // 
-            // colStudentID
-            // 
-            this.colStudentID.HeaderText = "StudentID";
-            this.colStudentID.Name = "colStudentID";
-            this.colStudentID.ReadOnly = true;
-            this.colStudentID.Visible = false;
-            // 
-            // colOccurDate
-            // 
-            this.colOccurDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colOccurDate.HeaderText = "獎懲日期";
-            this.colOccurDate.Name = "colOccurDate";
-            this.colOccurDate.ReadOnly = true;
-            this.colOccurDate.Width = 85;
-            // 
-            // colClassName
-            // 
-            this.colClassName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colClassName.HeaderText = "班級";
-            this.colClassName.Name = "colClassName";
-            this.colClassName.ReadOnly = true;
-            this.colClassName.Width = 59;
-            // 
-            // colSeatNo
-            // 
-            this.colSeatNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colSeatNo.HeaderText = "座號";
-            this.colSeatNo.Name = "colSeatNo";
-            this.colSeatNo.Width = 59;
-            // 
-            // colStudentNumber
-            // 
-            this.colStudentNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colStudentNumber.HeaderText = "學號";
-            this.colStudentNumber.Name = "colStudentNumber";
-            this.colStudentNumber.ReadOnly = true;
-            this.colStudentNumber.Width = 59;
-            // 
-            // colStudentName
-            // 
-            this.colStudentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colStudentName.HeaderText = "姓名";
-            this.colStudentName.Name = "colStudentName";
-            this.colStudentName.ReadOnly = true;
-            this.colStudentName.Width = 59;
-            // 
-            // colGender
-            // 
-            this.colGender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colGender.HeaderText = "性別";
-            this.colGender.Name = "colGender";
-            this.colGender.ReadOnly = true;
-            this.colGender.Width = 59;
-            // 
-            // colDisciplineCount
-            // 
-            this.colDisciplineCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colDisciplineCount.HeaderText = "獎懲次數";
-            this.colDisciplineCount.Name = "colDisciplineCount";
-            this.colDisciplineCount.ReadOnly = true;
-            this.colDisciplineCount.Width = 85;
-            // 
-            // colReason
-            // 
-            this.colReason.HeaderText = "事由";
-            this.colReason.Name = "colReason";
-            this.colReason.ReadOnly = true;
-            this.colReason.Width = 250;
-            // 
-            // colRemark
-            // 
-            this.colRemark.HeaderText = "備註";
-            this.colRemark.Name = "colRemark";
-            // 
-            // colSchoolYear
-            // 
-            this.colSchoolYear.HeaderText = "學年度";
-            this.colSchoolYear.Name = "colSchoolYear";
-            this.colSchoolYear.ReadOnly = true;
-            this.colSchoolYear.Width = 75;
-            // 
-            // colSemester
-            // 
-            this.colSemester.HeaderText = "學期";
-            this.colSemester.Name = "colSemester";
-            this.colSemester.ReadOnly = true;
-            this.colSemester.Width = 75;
-            // 
-            // colRegisterDate
-            // 
-            this.colRegisterDate.HeaderText = "登錄日期";
-            this.colRegisterDate.Name = "colRegisterDate";
-            this.colRegisterDate.ReadOnly = true;
-            this.colRegisterDate.Width = 120;
-            // 
-            // colMeritFlag
-            // 
-            this.colMeritFlag.HeaderText = "Flag";
-            this.colMeritFlag.Name = "colMeritFlag";
-            this.colMeritFlag.Visible = false;
             // 
             // contextMenuStrip1
             // 
@@ -1317,6 +1208,116 @@
             this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // colID
+            // 
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Visible = false;
+            this.colID.Width = 80;
+            // 
+            // colStudentID
+            // 
+            this.colStudentID.HeaderText = "StudentID";
+            this.colStudentID.Name = "colStudentID";
+            this.colStudentID.ReadOnly = true;
+            this.colStudentID.Visible = false;
+            // 
+            // colOccurDate
+            // 
+            this.colOccurDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colOccurDate.HeaderText = "獎懲日期";
+            this.colOccurDate.Name = "colOccurDate";
+            this.colOccurDate.ReadOnly = true;
+            this.colOccurDate.Width = 85;
+            // 
+            // colClassName
+            // 
+            this.colClassName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colClassName.HeaderText = "班級";
+            this.colClassName.Name = "colClassName";
+            this.colClassName.ReadOnly = true;
+            this.colClassName.Width = 59;
+            // 
+            // colSeatNo
+            // 
+            this.colSeatNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colSeatNo.HeaderText = "座號";
+            this.colSeatNo.Name = "colSeatNo";
+            this.colSeatNo.ReadOnly = true;
+            this.colSeatNo.Width = 59;
+            // 
+            // colStudentNumber
+            // 
+            this.colStudentNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colStudentNumber.HeaderText = "學號";
+            this.colStudentNumber.Name = "colStudentNumber";
+            this.colStudentNumber.ReadOnly = true;
+            this.colStudentNumber.Width = 59;
+            // 
+            // colStudentName
+            // 
+            this.colStudentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colStudentName.HeaderText = "姓名";
+            this.colStudentName.Name = "colStudentName";
+            this.colStudentName.ReadOnly = true;
+            this.colStudentName.Width = 59;
+            // 
+            // colGender
+            // 
+            this.colGender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colGender.HeaderText = "性別";
+            this.colGender.Name = "colGender";
+            this.colGender.ReadOnly = true;
+            this.colGender.Width = 59;
+            // 
+            // colDisciplineCount
+            // 
+            this.colDisciplineCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colDisciplineCount.HeaderText = "獎懲次數";
+            this.colDisciplineCount.Name = "colDisciplineCount";
+            this.colDisciplineCount.ReadOnly = true;
+            this.colDisciplineCount.Width = 85;
+            // 
+            // colReason
+            // 
+            this.colReason.HeaderText = "事由";
+            this.colReason.Name = "colReason";
+            this.colReason.ReadOnly = true;
+            this.colReason.Width = 250;
+            // 
+            // colRemark
+            // 
+            this.colRemark.HeaderText = "備註";
+            this.colRemark.Name = "colRemark";
+            // 
+            // colSchoolYear
+            // 
+            this.colSchoolYear.HeaderText = "學年度";
+            this.colSchoolYear.Name = "colSchoolYear";
+            this.colSchoolYear.ReadOnly = true;
+            this.colSchoolYear.Width = 75;
+            // 
+            // colSemester
+            // 
+            this.colSemester.HeaderText = "學期";
+            this.colSemester.Name = "colSemester";
+            this.colSemester.ReadOnly = true;
+            this.colSemester.Width = 75;
+            // 
+            // colRegisterDate
+            // 
+            this.colRegisterDate.HeaderText = "登錄日期";
+            this.colRegisterDate.Name = "colRegisterDate";
+            this.colRegisterDate.ReadOnly = true;
+            this.colRegisterDate.Width = 120;
+            // 
+            // colMeritFlag
+            // 
+            this.colMeritFlag.HeaderText = "Flag";
+            this.colMeritFlag.Name = "colMeritFlag";
+            this.colMeritFlag.Visible = false;
+            // 
             // MerDemEditForm
             // 
             this.ClientSize = new System.Drawing.Size(792, 546);
@@ -1439,6 +1440,7 @@
         private System.Windows.Forms.ToolStripMenuItem 修改學年度學期ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 批次增加前置詞ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem 修改備註資料ToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStudentID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOccurDate;
@@ -1454,7 +1456,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colSemester;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRegisterDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMeritFlag;
-        private System.Windows.Forms.ToolStripMenuItem 修改備註資料ToolStripMenuItem;
     }
 }
 

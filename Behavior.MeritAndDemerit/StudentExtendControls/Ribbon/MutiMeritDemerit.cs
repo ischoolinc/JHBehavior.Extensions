@@ -36,6 +36,8 @@ namespace JHSchool.Behavior.MeritAndDemerit
         //Load
         private void MutiMeritDemerit_Load(object sender, EventArgs e)
         {
+            List<string> cols = new List<string>() { "大功", "小功", "嘉獎", "大過", "小過", "警告" };
+            Campus.Windows.DataGridViewImeDecorator dec = new Campus.Windows.DataGridViewImeDecorator(this.dataGridViewX1, cols);
 
             //comboBoxEx1.DisplayMember = "Key";
             //comboBoxEx1.ValueMember = "Value";

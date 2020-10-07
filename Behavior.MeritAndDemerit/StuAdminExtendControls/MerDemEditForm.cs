@@ -981,13 +981,22 @@ left join class on class.id=student.ref_class_id");
             string 座號1 = (x.SeatNo.HasValue ? x.SeatNo.Value.ToString().PadLeft(2, '0') : "") + "::";
             string 班級名稱2 = (y.Class == null ? "" : y.Class.Name) + "::";
             string 座號2 = (y.SeatNo.HasValue ? y.SeatNo.Value.ToString().PadLeft(2, '0') : "") + "::";
-            string 日期1 = attendX.OccurDate.ToShortDateString();
-            string 日期2 = attendy.OccurDate.ToShortDateString();
-            班級名稱1 += 座號1;
-            班級名稱1 += 日期1;
 
+            班級名稱1 += 座號1;
             班級名稱2 += 座號2;
-            班級名稱2 += 日期2;
+            if (attendX.OccurDate > attendy.OccurDate)
+                班級名稱1 += "3";
+            else if (attendX.OccurDate == attendy.OccurDate)
+                班級名稱1 += "2";
+            else
+                班級名稱1 += "1";
+
+            if (attendy.OccurDate > attendX.OccurDate)
+                班級名稱2 += "3";
+            else if (attendy.OccurDate == attendX.OccurDate)
+                班級名稱2 += "2";
+            else
+                班級名稱2 += "1";
 
             return 班級名稱1.CompareTo(班級名稱2);
         }
