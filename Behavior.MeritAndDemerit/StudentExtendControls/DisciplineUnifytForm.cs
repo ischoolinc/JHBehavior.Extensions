@@ -15,6 +15,7 @@ using Framework.Security;
 using FCode = Framework.Security.FeatureCodeAttribute;
 using Framework;
 using FISCA.DSAUtil;
+using Campus.Windows;
 
 namespace JHSchool.Behavior.MeritAndDemerit
 {
@@ -72,6 +73,12 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
         private void DemeritUnifytForm_Load(object sender, EventArgs e)
         {
+            List<string> cols1 = new List<string>() { "大功", "小功", "嘉獎" };
+            DataGridViewImeDecorator dec1 = new DataGridViewImeDecorator(this.dgvMerit, cols1);
+
+            List<string> cols2 = new List<string>() { "大過", "小過", "警告" };
+            DataGridViewImeDecorator dec2 = new DataGridViewImeDecorator(this.dgvDemerit, cols2);
+
             lbHelp1.Text = _SchoolYear + "學年度　第" + _Semester + "學期　獎勵 / 懲戒記錄";
 
             BGW.DoWork += new DoWorkEventHandler(BgW_DoWork);
