@@ -14,6 +14,7 @@ using JHSchool.Behavior.Editor;
 using FISCA.Presentation.Controls;
 using JHSchool.Data;
 using FISCA.LogAgent;
+using DevComponents.DotNetBar.Validator;
 
 namespace JHSchool.Behavior.MeritAndDemerit
 {
@@ -34,8 +35,31 @@ namespace JHSchool.Behavior.MeritAndDemerit
             dateTimeInput1.Value = DateTime.Today;
         }
 
+        private bool CheckDateTimeInput()
+        {
+            // 2023/3/14 - 增加驗證使用者是否未輸入時間
+            if (dateTimeInput1.Text == "0001/01/01 00:00:00" || dateTimeInput1.Text == "")
+            {
+                errorProvider1.SetError(dateTimeInput1, "請輸入時間日期");
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(dateTimeInput1, "");
+            }
+
+            return true;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
+            // 2023/3/14 - 增加驗證使用者是否未輸入時間
+            if (!CheckDateTimeInput())
+            {
+                FISCA.Presentation.Controls.MsgBox.Show("請修正時間欄位,再儲存!!");
+                return;
+            }
+
             DateTime dt;
             if (!DateTime.TryParse(dateTimeInput1.Text,out dt))
             {

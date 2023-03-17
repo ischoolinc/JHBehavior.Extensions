@@ -7,7 +7,6 @@ using JHSchool.Data;
 using FISCA.Presentation;
 using Framework.Security;
 using Framework;
-using JHSchool.Affair;
 
 namespace JHSchool.Behavior.MeritAndDemerit
 {
@@ -158,7 +157,7 @@ namespace JHSchool.Behavior.MeritAndDemerit
 
             #endregion
 
-            RibbonBarItem batchEdit = StuAdmin.Instance.RibbonBarItems["批次作業/查詢"];
+            RibbonBarItem batchEdit = FISCA.Presentation.MotherForm.RibbonBarItems["學務作業", "批次作業/查詢"];
             batchEdit.Index = 1;
             batchEdit["獎懲批次修改"].Image = Properties.Resources.star_write_64;
             batchEdit["獎懲批次修改"].Enable = User.Acl["JHSchool.StuAdmin.Ribbon0050"].Executable;

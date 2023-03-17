@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.txtDescription = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.btnExit = new DevComponents.DotNetBar.ButtonX();
             this.dateTimeInput1 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelX2
@@ -171,6 +174,10 @@
             this.dateTimeInput1.Size = new System.Drawing.Size(165, 25);
             this.dateTimeInput1.TabIndex = 13;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ClearDemeritForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -182,9 +189,11 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.btnExit);
+            this.DoubleBuffered = true;
             this.Name = "ClearDemeritForm";
             this.Text = "銷過作業";
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,5 +207,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtDescription;
         private DevComponents.DotNetBar.ButtonX btnExit;
         private DevComponents.Editors.DateTimeAdv.DateTimeInput dateTimeInput1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
