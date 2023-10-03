@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnDemeritClear = new DevComponents.DotNetBar.ButtonX();
             this.dgvDemerit = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +47,7 @@
             this.CHBClearedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CHBClearedReason = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CHBRegisterDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRemarkDemerit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnDemeritDelete = new DevComponents.DotNetBar.ButtonX();
             this.btnDemeritEdit = new DevComponents.DotNetBar.ButtonX();
             this.btnView = new DevComponents.DotNetBar.ButtonX();
@@ -57,8 +58,6 @@
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lbHelp3 = new DevComponents.DotNetBar.LabelX();
             this.tabControl1 = new DevComponents.DotNetBar.TabControl();
-            this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
-            this.tabItem2 = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this.groupPanel4 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lbHelp2 = new DevComponents.DotNetBar.LabelX();
@@ -76,29 +75,31 @@
             this.CHAMeritC = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CHAReason = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CHARegisterDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRemarkMerit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnMeritNew = new DevComponents.DotNetBar.ButtonX();
             this.btnMeritDelete = new DevComponents.DotNetBar.ButtonX();
             this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
             this.btnMeritEdit = new DevComponents.DotNetBar.ButtonX();
             this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
+            this.tabItem2 = new DevComponents.DotNetBar.TabItem(this.components);
             this.lbHelp1 = new DevComponents.DotNetBar.LabelX();
-            this.colRemarkMerit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colRemarkDemerit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.dgvDemerit)).BeginInit();
             this.groupPanelx1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl1)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabControlPanel2.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
             this.groupPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMerit)).BeginInit();
             this.groupPanel3.SuspendLayout();
+            this.tabControlPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnDemeritClear
             // 
             this.btnDemeritClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDemeritClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDemeritClear.BackColor = System.Drawing.Color.Transparent;
             this.btnDemeritClear.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnDemeritClear.Enabled = false;
@@ -114,6 +115,9 @@
             this.dgvDemerit.AllowUserToAddRows = false;
             this.dgvDemerit.AllowUserToDeleteRows = false;
             this.dgvDemerit.AllowUserToResizeRows = false;
+            this.dgvDemerit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDemerit.BackgroundColor = System.Drawing.Color.White;
             this.dgvDemerit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDemerit.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -121,14 +125,14 @@
             this.Column1,
             this.Column2,
             this.Column3});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDemerit.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDemerit.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDemerit.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvDemerit.Location = new System.Drawing.Point(10, 8);
             this.dgvDemerit.Name = "dgvDemerit";
@@ -168,6 +172,9 @@
             // 
             // listViewDemerit
             // 
+            this.listViewDemerit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // 
             // 
@@ -240,9 +247,15 @@
             this.CHBRegisterDate.Text = "登錄日期";
             this.CHBRegisterDate.Width = 100;
             // 
+            // colRemarkDemerit
+            // 
+            this.colRemarkDemerit.Text = "備註";
+            this.colRemarkDemerit.Width = 100;
+            // 
             // btnDemeritDelete
             // 
             this.btnDemeritDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDemeritDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDemeritDelete.BackColor = System.Drawing.Color.Transparent;
             this.btnDemeritDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnDemeritDelete.Location = new System.Drawing.Point(254, 161);
@@ -255,6 +268,7 @@
             // btnDemeritEdit
             // 
             this.btnDemeritEdit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDemeritEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDemeritEdit.BackColor = System.Drawing.Color.Transparent;
             this.btnDemeritEdit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnDemeritEdit.Location = new System.Drawing.Point(92, 161);
@@ -267,6 +281,7 @@
             // btnView
             // 
             this.btnView.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnView.BackColor = System.Drawing.Color.Transparent;
             this.btnView.Location = new System.Drawing.Point(11, 161);
             this.btnView.Name = "btnView";
@@ -277,6 +292,7 @@
             // btnDemeritNew
             // 
             this.btnDemeritNew.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDemeritNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDemeritNew.BackColor = System.Drawing.Color.Transparent;
             this.btnDemeritNew.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnDemeritNew.Location = new System.Drawing.Point(11, 161);
@@ -289,6 +305,7 @@
             // btnExitAll
             // 
             this.btnExitAll.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnExitAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExitAll.BackColor = System.Drawing.Color.Transparent;
             this.btnExitAll.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnExitAll.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -302,6 +319,7 @@
             // btnSaveDemeritStatistics
             // 
             this.btnSaveDemeritStatistics.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSaveDemeritStatistics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSaveDemeritStatistics.AutoSize = true;
             this.btnSaveDemeritStatistics.BackColor = System.Drawing.Color.Transparent;
             this.btnSaveDemeritStatistics.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
@@ -314,6 +332,9 @@
             // 
             // groupPanelx1
             // 
+            this.groupPanelx1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanelx1.BackColor = System.Drawing.Color.Transparent;
             this.groupPanelx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanelx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -361,6 +382,8 @@
             // 
             // groupPanel2
             // 
+            this.groupPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -405,6 +428,7 @@
             // 
             // lbHelp3
             // 
+            this.lbHelp3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbHelp3.AutoSize = true;
             this.lbHelp3.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -420,6 +444,9 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.BackColor = System.Drawing.Color.Transparent;
             this.tabControl1.CanReorderTabs = true;
             this.tabControl1.Controls.Add(this.tabControlPanel2);
@@ -434,32 +461,6 @@
             this.tabControl1.Tabs.Add(this.tabItem1);
             this.tabControl1.Tabs.Add(this.tabItem2);
             this.tabControl1.Text = "tabControl1";
-            // 
-            // tabControlPanel2
-            // 
-            this.tabControlPanel2.Controls.Add(this.groupPanelx1);
-            this.tabControlPanel2.Controls.Add(this.groupPanel2);
-            this.tabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel2.Location = new System.Drawing.Point(0, 29);
-            this.tabControlPanel2.Name = "tabControlPanel2";
-            this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel2.Size = new System.Drawing.Size(579, 433);
-            this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
-            this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
-            this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel2.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
-            this.tabControlPanel2.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
-            | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel2.Style.GradientAngle = 90;
-            this.tabControlPanel2.TabIndex = 2;
-            this.tabControlPanel2.TabItem = this.tabItem2;
-            // 
-            // tabItem2
-            // 
-            this.tabItem2.AttachedControl = this.tabControlPanel2;
-            this.tabItem2.Name = "tabItem2";
-            this.tabItem2.Text = "懲戒";
-            this.tabItem2.TextColor = System.Drawing.Color.Red;
             // 
             // tabControlPanel1
             // 
@@ -482,6 +483,8 @@
             // 
             // groupPanel4
             // 
+            this.groupPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel4.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel4.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -526,6 +529,7 @@
             // 
             // lbHelp2
             // 
+            this.lbHelp2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbHelp2.AutoSize = true;
             // 
             // 
@@ -543,6 +547,9 @@
             this.dgvMerit.AllowUserToAddRows = false;
             this.dgvMerit.AllowUserToDeleteRows = false;
             this.dgvMerit.AllowUserToResizeRows = false;
+            this.dgvMerit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMerit.BackgroundColor = System.Drawing.Color.White;
             this.dgvMerit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMerit.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -550,14 +557,14 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMerit.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMerit.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvMerit.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvMerit.Location = new System.Drawing.Point(10, 8);
             this.dgvMerit.Name = "dgvMerit";
@@ -598,6 +605,7 @@
             // btnSaveMeritStatistics
             // 
             this.btnSaveMeritStatistics.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSaveMeritStatistics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSaveMeritStatistics.AutoSize = true;
             this.btnSaveMeritStatistics.BackColor = System.Drawing.Color.Transparent;
             this.btnSaveMeritStatistics.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
@@ -610,6 +618,9 @@
             // 
             // groupPanel3
             // 
+            this.groupPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupPanel3.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -656,6 +667,9 @@
             // 
             // listViewMerit
             // 
+            this.listViewMerit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // 
             // 
@@ -709,9 +723,15 @@
             this.CHARegisterDate.Text = "登錄日期";
             this.CHARegisterDate.Width = 130;
             // 
+            // colRemarkMerit
+            // 
+            this.colRemarkMerit.Text = "備註";
+            this.colRemarkMerit.Width = 100;
+            // 
             // btnMeritNew
             // 
             this.btnMeritNew.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnMeritNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMeritNew.BackColor = System.Drawing.Color.Transparent;
             this.btnMeritNew.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnMeritNew.Location = new System.Drawing.Point(11, 161);
@@ -724,6 +744,7 @@
             // btnMeritDelete
             // 
             this.btnMeritDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnMeritDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMeritDelete.BackColor = System.Drawing.Color.Transparent;
             this.btnMeritDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnMeritDelete.Location = new System.Drawing.Point(173, 161);
@@ -736,6 +757,7 @@
             // buttonX4
             // 
             this.buttonX4.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonX4.BackColor = System.Drawing.Color.Transparent;
             this.buttonX4.Location = new System.Drawing.Point(11, 161);
             this.buttonX4.Name = "buttonX4";
@@ -746,6 +768,7 @@
             // btnMeritEdit
             // 
             this.btnMeritEdit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnMeritEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMeritEdit.BackColor = System.Drawing.Color.Transparent;
             this.btnMeritEdit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnMeritEdit.Location = new System.Drawing.Point(92, 161);
@@ -761,6 +784,32 @@
             this.tabItem1.Name = "tabItem1";
             this.tabItem1.Text = "獎勵";
             this.tabItem1.TextColor = System.Drawing.Color.Blue;
+            // 
+            // tabControlPanel2
+            // 
+            this.tabControlPanel2.Controls.Add(this.groupPanelx1);
+            this.tabControlPanel2.Controls.Add(this.groupPanel2);
+            this.tabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel2.Location = new System.Drawing.Point(0, 29);
+            this.tabControlPanel2.Name = "tabControlPanel2";
+            this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel2.Size = new System.Drawing.Size(579, 433);
+            this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
+            this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
+            this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel2.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
+            this.tabControlPanel2.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel2.Style.GradientAngle = 90;
+            this.tabControlPanel2.TabIndex = 2;
+            this.tabControlPanel2.TabItem = this.tabItem2;
+            // 
+            // tabItem2
+            // 
+            this.tabItem2.AttachedControl = this.tabControlPanel2;
+            this.tabItem2.Name = "tabItem2";
+            this.tabItem2.Text = "懲戒";
+            this.tabItem2.TextColor = System.Drawing.Color.Red;
             // 
             // lbHelp1
             // 
@@ -778,16 +827,6 @@
             this.lbHelp1.TabIndex = 26;
             this.lbHelp1.Text = "基本說明..";
             // 
-            // colRemarkMerit
-            // 
-            this.colRemarkMerit.Text = "備註";
-            this.colRemarkMerit.Width = 100;
-            // 
-            // colRemarkDemerit
-            // 
-            this.colRemarkDemerit.Text = "備註";
-            this.colRemarkDemerit.Width = 100;
-            // 
             // DisciplineUnifytForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -797,6 +836,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnExitAll);
             this.DoubleBuffered = true;
+            this.MaximizeBox = true;
             this.Name = "DisciplineUnifytForm";
             this.Text = "獎勵 / 懲戒學期統計";
             this.Load += new System.EventHandler(this.DemeritUnifytForm_Load);
@@ -806,12 +846,12 @@
             this.groupPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl1)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabControlPanel2.ResumeLayout(false);
             this.tabControlPanel1.ResumeLayout(false);
             this.groupPanel4.ResumeLayout(false);
             this.groupPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMerit)).EndInit();
             this.groupPanel3.ResumeLayout(false);
+            this.tabControlPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
