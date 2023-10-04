@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnDemeritClear = new DevComponents.DotNetBar.ButtonX();
             this.listViewDemerit = new JHSchool.Behavior.Legacy.ListViewEx();
             this.CHBDemeritDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,15 +50,16 @@
             this.btnExitAll = new DevComponents.DotNetBar.ButtonX();
             this.tabControl1 = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
+            this.lbHelp3 = new DevComponents.DotNetBar.LabelX();
+            this.dgvDemerit = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSaveDemeritStatistics = new DevComponents.DotNetBar.ButtonX();
             this.tabItem2 = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this.lbHelp2 = new DevComponents.DotNetBar.LabelX();
-            this.dgvMerit = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSaveMeritStatistics = new DevComponents.DotNetBar.ButtonX();
             this.listViewMerit = new JHSchool.Behavior.Legacy.ListViewEx();
             this.CHAMeritDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CHAMeritA = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,25 +68,24 @@
             this.CHAReason = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CHARegisterDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colRemarkMerit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dgvMerit = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSaveMeritStatistics = new DevComponents.DotNetBar.ButtonX();
             this.btnMeritNew = new DevComponents.DotNetBar.ButtonX();
             this.btnMeritDelete = new DevComponents.DotNetBar.ButtonX();
             this.buttonX4 = new DevComponents.DotNetBar.ButtonX();
             this.btnMeritEdit = new DevComponents.DotNetBar.ButtonX();
             this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
             this.lbHelp1 = new DevComponents.DotNetBar.LabelX();
-            this.btnSaveDemeritStatistics = new DevComponents.DotNetBar.ButtonX();
-            this.dgvDemerit = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbHelp3 = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabControlPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDemerit)).BeginInit();
             this.tabControlPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMerit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDemerit)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDemeritClear
@@ -294,6 +294,95 @@
             this.tabControlPanel2.TabIndex = 2;
             this.tabControlPanel2.TabItem = this.tabItem2;
             // 
+            // lbHelp3
+            // 
+            this.lbHelp3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbHelp3.AutoSize = true;
+            this.lbHelp3.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.lbHelp3.BackgroundStyle.Class = "";
+            this.lbHelp3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbHelp3.Location = new System.Drawing.Point(187, 392);
+            this.lbHelp3.Name = "lbHelp3";
+            this.lbHelp3.Size = new System.Drawing.Size(181, 21);
+            this.lbHelp3.TabIndex = 27;
+            this.lbHelp3.Text = "說明：白色欄位為可調整內容";
+            // 
+            // dgvDemerit
+            // 
+            this.dgvDemerit.AllowUserToAddRows = false;
+            this.dgvDemerit.AllowUserToDeleteRows = false;
+            this.dgvDemerit.AllowUserToResizeRows = false;
+            this.dgvDemerit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvDemerit.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDemerit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDemerit.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column5,
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDemerit.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDemerit.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgvDemerit.Location = new System.Drawing.Point(18, 262);
+            this.dgvDemerit.Name = "dgvDemerit";
+            this.dgvDemerit.RowHeadersVisible = false;
+            this.dgvDemerit.RowTemplate.Height = 24;
+            this.dgvDemerit.Size = new System.Drawing.Size(543, 121);
+            this.dgvDemerit.TabIndex = 7;
+            this.dgvDemerit.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDemerit_CellEndEdit);
+            this.dgvDemerit.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvDemerit_CurrentCellDirtyStateChanged);
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "統計類型";
+            this.Column5.Name = "Column5";
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "大過";
+            this.Column1.Name = "Column1";
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.Width = 140;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "小過";
+            this.Column2.Name = "Column2";
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column2.Width = 140;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "警告";
+            this.Column3.Name = "Column3";
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column3.Width = 140;
+            // 
+            // btnSaveDemeritStatistics
+            // 
+            this.btnSaveDemeritStatistics.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSaveDemeritStatistics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSaveDemeritStatistics.AutoSize = true;
+            this.btnSaveDemeritStatistics.BackColor = System.Drawing.Color.Transparent;
+            this.btnSaveDemeritStatistics.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSaveDemeritStatistics.Location = new System.Drawing.Point(18, 389);
+            this.btnSaveDemeritStatistics.Name = "btnSaveDemeritStatistics";
+            this.btnSaveDemeritStatistics.Size = new System.Drawing.Size(158, 25);
+            this.btnSaveDemeritStatistics.TabIndex = 22;
+            this.btnSaveDemeritStatistics.Text = "儲存懲戒手動調整統計值";
+            this.btnSaveDemeritStatistics.Click += new System.EventHandler(this.btnSaveDemeritStatistics_Click);
+            // 
             // tabItem2
             // 
             this.tabItem2.AttachedControl = this.tabControlPanel2;
@@ -342,13 +431,75 @@
             this.lbHelp2.TabIndex = 23;
             this.lbHelp2.Text = "說明：白色欄位為可調整內容";
             // 
+            // listViewMerit
+            // 
+            this.listViewMerit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.listViewMerit.Border.Class = "ListViewBorder";
+            this.listViewMerit.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.listViewMerit.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.CHAMeritDate,
+            this.CHAMeritA,
+            this.CHAMeritB,
+            this.CHAMeritC,
+            this.CHAReason,
+            this.CHARegisterDate,
+            this.colRemarkMerit});
+            this.listViewMerit.FullRowSelect = true;
+            this.listViewMerit.HideSelection = false;
+            this.listViewMerit.Location = new System.Drawing.Point(18, 18);
+            this.listViewMerit.Name = "listViewMerit";
+            this.listViewMerit.Size = new System.Drawing.Size(543, 199);
+            this.listViewMerit.TabIndex = 11;
+            this.listViewMerit.UseCompatibleStateImageBehavior = false;
+            this.listViewMerit.View = System.Windows.Forms.View.Details;
+            this.listViewMerit.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewMerit_MouseDoubleClick);
+            // 
+            // CHAMeritDate
+            // 
+            this.CHAMeritDate.Text = "獎勵日期";
+            this.CHAMeritDate.Width = 110;
+            // 
+            // CHAMeritA
+            // 
+            this.CHAMeritA.Text = "大功";
+            this.CHAMeritA.Width = 48;
+            // 
+            // CHAMeritB
+            // 
+            this.CHAMeritB.Text = "小功";
+            this.CHAMeritB.Width = 49;
+            // 
+            // CHAMeritC
+            // 
+            this.CHAMeritC.Text = "嘉獎";
+            this.CHAMeritC.Width = 48;
+            // 
+            // CHAReason
+            // 
+            this.CHAReason.Text = "事由";
+            this.CHAReason.Width = 140;
+            // 
+            // CHARegisterDate
+            // 
+            this.CHARegisterDate.Text = "登錄日期";
+            this.CHARegisterDate.Width = 130;
+            // 
+            // colRemarkMerit
+            // 
+            this.colRemarkMerit.Text = "備註";
+            this.colRemarkMerit.Width = 100;
+            // 
             // dgvMerit
             // 
             this.dgvMerit.AllowUserToAddRows = false;
             this.dgvMerit.AllowUserToDeleteRows = false;
             this.dgvMerit.AllowUserToResizeRows = false;
-            this.dgvMerit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvMerit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMerit.BackgroundColor = System.Drawing.Color.White;
             this.dgvMerit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -415,69 +566,6 @@
             this.btnSaveMeritStatistics.TabIndex = 22;
             this.btnSaveMeritStatistics.Text = "儲存獎勵手動調整統計值";
             this.btnSaveMeritStatistics.Click += new System.EventHandler(this.btnSaveMeritStatistics_Click);
-            // 
-            // listViewMerit
-            // 
-            this.listViewMerit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.listViewMerit.Border.Class = "ListViewBorder";
-            this.listViewMerit.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.listViewMerit.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.CHAMeritDate,
-            this.CHAMeritA,
-            this.CHAMeritB,
-            this.CHAMeritC,
-            this.CHAReason,
-            this.CHARegisterDate,
-            this.colRemarkMerit});
-            this.listViewMerit.FullRowSelect = true;
-            this.listViewMerit.HideSelection = false;
-            this.listViewMerit.Location = new System.Drawing.Point(18, 18);
-            this.listViewMerit.Name = "listViewMerit";
-            this.listViewMerit.Size = new System.Drawing.Size(543, 199);
-            this.listViewMerit.TabIndex = 11;
-            this.listViewMerit.UseCompatibleStateImageBehavior = false;
-            this.listViewMerit.View = System.Windows.Forms.View.Details;
-            this.listViewMerit.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewMerit_MouseDoubleClick);
-            // 
-            // CHAMeritDate
-            // 
-            this.CHAMeritDate.Text = "獎勵日期";
-            this.CHAMeritDate.Width = 110;
-            // 
-            // CHAMeritA
-            // 
-            this.CHAMeritA.Text = "大功";
-            this.CHAMeritA.Width = 48;
-            // 
-            // CHAMeritB
-            // 
-            this.CHAMeritB.Text = "小功";
-            this.CHAMeritB.Width = 49;
-            // 
-            // CHAMeritC
-            // 
-            this.CHAMeritC.Text = "嘉獎";
-            this.CHAMeritC.Width = 48;
-            // 
-            // CHAReason
-            // 
-            this.CHAReason.Text = "事由";
-            this.CHAReason.Width = 140;
-            // 
-            // CHARegisterDate
-            // 
-            this.CHARegisterDate.Text = "登錄日期";
-            this.CHARegisterDate.Width = 130;
-            // 
-            // colRemarkMerit
-            // 
-            this.colRemarkMerit.Text = "備註";
-            this.colRemarkMerit.Width = 100;
             // 
             // btnMeritNew
             // 
@@ -552,96 +640,6 @@
             this.lbHelp1.TabIndex = 26;
             this.lbHelp1.Text = "基本說明..";
             // 
-            // btnSaveDemeritStatistics
-            // 
-            this.btnSaveDemeritStatistics.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSaveDemeritStatistics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSaveDemeritStatistics.AutoSize = true;
-            this.btnSaveDemeritStatistics.BackColor = System.Drawing.Color.Transparent;
-            this.btnSaveDemeritStatistics.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveDemeritStatistics.Location = new System.Drawing.Point(18, 389);
-            this.btnSaveDemeritStatistics.Name = "btnSaveDemeritStatistics";
-            this.btnSaveDemeritStatistics.Size = new System.Drawing.Size(158, 25);
-            this.btnSaveDemeritStatistics.TabIndex = 22;
-            this.btnSaveDemeritStatistics.Text = "儲存懲戒手動調整統計值";
-            this.btnSaveDemeritStatistics.Click += new System.EventHandler(this.btnSaveDemeritStatistics_Click);
-            // 
-            // dgvDemerit
-            // 
-            this.dgvDemerit.AllowUserToAddRows = false;
-            this.dgvDemerit.AllowUserToDeleteRows = false;
-            this.dgvDemerit.AllowUserToResizeRows = false;
-            this.dgvDemerit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDemerit.BackgroundColor = System.Drawing.Color.White;
-            this.dgvDemerit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDemerit.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column5,
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDemerit.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDemerit.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgvDemerit.Location = new System.Drawing.Point(18, 262);
-            this.dgvDemerit.Name = "dgvDemerit";
-            this.dgvDemerit.RowHeadersVisible = false;
-            this.dgvDemerit.RowTemplate.Height = 24;
-            this.dgvDemerit.Size = new System.Drawing.Size(537, 121);
-            this.dgvDemerit.TabIndex = 7;
-            this.dgvDemerit.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDemerit_CellEndEdit);
-            this.dgvDemerit.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvDemerit_CurrentCellDirtyStateChanged);
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "警告";
-            this.Column3.Name = "Column3";
-            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column3.Width = 140;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "小過";
-            this.Column2.Name = "Column2";
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column2.Width = 140;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "大過";
-            this.Column1.Name = "Column1";
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column1.Width = 140;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "統計類型";
-            this.Column5.Name = "Column5";
-            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // lbHelp3
-            // 
-            this.lbHelp3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbHelp3.AutoSize = true;
-            this.lbHelp3.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.lbHelp3.BackgroundStyle.Class = "";
-            this.lbHelp3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbHelp3.Location = new System.Drawing.Point(187, 392);
-            this.lbHelp3.Name = "lbHelp3";
-            this.lbHelp3.Size = new System.Drawing.Size(181, 21);
-            this.lbHelp3.TabIndex = 27;
-            this.lbHelp3.Text = "說明：白色欄位為可調整內容";
-            // 
             // DisciplineUnifytForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -659,10 +657,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabControlPanel2.ResumeLayout(false);
             this.tabControlPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDemerit)).EndInit();
             this.tabControlPanel1.ResumeLayout(false);
             this.tabControlPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMerit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDemerit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
